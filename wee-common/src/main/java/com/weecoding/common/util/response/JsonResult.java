@@ -16,32 +16,108 @@ import java.util.Collections;
 @NoArgsConstructor
 public class JsonResult<T> extends JsonAccept<T> {
 
-    public JsonResult(IResultCode iResultCode, T data) {
-        super(iResultCode.getCode(), iResultCode.getMsg(), data);
+    /**
+     * <h3>成功，无数据返回，默认返回空数组</h3>
+     * <p>
+     * 返回值格式:<br/>
+     * {code:0,msg:"操作成功!",data:[]}
+     * </p>
+     *
+     * @return
+     */
+    public static JsonResult ok() {
+        return enumBuild(JsonStatusEnum.ok, Collections.emptyList());
     }
 
-    public JsonResult(IResultCode iResultCode) {
-        super(iResultCode.getCode(), iResultCode.getMsg(), null);
+    /**
+     * <h3>成功，有返回值</h3>
+     * <p>
+     * 返回值格式:<br/>
+     * {code:0,msg:"操作成功!",data:{@link Object}}
+     * </p>
+     *
+     * @param data
+     * @return
+     */
+    public static <T> JsonResult ok(T data) {
+        return enumBuild(JsonStatusEnum.ok, data);
     }
 
+    /**
+     * <h3>自定义信息，无数据返回，默认返回空数组</h3>
+     * <p>
+     * 返回值格式:<br/>
+     * {code:6000,msg:"自定义内容!",data:[]}
+     * </p>
+     *
+     * @return
+     */
+    public static JsonResult errorMsg(String msg) {
+        return build(JsonStatusEnum.errorMsg.getCode(), msg, Collections.emptyList());
+    }
+
+    /**
+     * <h3>自定义信息，有返回值</h3>
+     * <p>
+     * 返回值格式:<br/>
+     * {code:6000,msg:"自定义内容!",data:{@link Object}}
+     * </p>
+     *
+     * @param data
+     * @return
+     */
+    public static <T> JsonResult errorMsg(String msg, T data) {
+        return build(JsonStatusEnum.errorMsg.getCode(), msg, data);
+    }
+//============================IResultCode返回码==========================================
+
+    /**
+     * <h3>设置返回码</h3>
+     *
+     * @param iResultCode {@link IResultCode}
+     * @return
+     */
     public static JsonResult iResultCode(IResultCode iResultCode) {
-        return new JsonResult(iResultCode);
+        return new JsonResult(iResultCode, Collections.emptyList());
     }
 
-    /**构造*/
-    public JsonResult(Integer code, String msg, T data) {
+    /**
+     * <h3>设置返回码，有返回值</h3>
+     *
+     * @param iResultCode {@link IResultCode}
+     * @return
+     */
+    public static <T> JsonResult iResultCode(IResultCode iResultCode, T data) {
+        return new JsonResult(iResultCode, data);
+    }
+
+
+    /**
+     * 普通构造
+     */
+    private JsonResult(Integer code, String msg, T data) {
         super(code, msg, data);
+    }
+
+    /**
+     *
+     * @param iResultCode
+     * @param data
+     */
+    private JsonResult(IResultCode iResultCode, T data) {
+        super(iResultCode.getCode(), iResultCode.getMsg(), data);
     }
 
     /**
      * <h3>默认提供的状态码</h3>
      * 可以通过{@link JsonResult}提供的内部枚举{@link JsonStatusEnum}返回指定状态<br/>
-     * 当该方法无法满足使用的时候，可以选择{@link JsonResult#build(Integer, String, Object)}自定义返回状态码
+     * 还可以自定义枚举继承{@link IResultCode}，然后调用{@link }
+     *
      * @param status
      * @param data
      * @return
      */
-    public static JsonResult enumBuild(JsonStatusEnum status, Object data) {
+    private static JsonResult enumBuild(JsonStatusEnum status, Object data) {
         return new JsonResult(status.getCode(), status.getMsg(), data);
     }
 
@@ -54,58 +130,8 @@ public class JsonResult<T> extends JsonAccept<T> {
      * @param data
      * @return
      */
-    public static <T> JsonResult build(Integer code, String msg, T data) {
+    private static <T> JsonResult build(Integer code, String msg, T data) {
         return new JsonResult(code, msg, data);
-    }
-
-    /**
-     * <h3>成功，无数据返回，默认返回空数组</h3>
-     * <p>
-     *     返回值格式:<br/>
-     *     {code:0,msg:"操作成功!",data:[]}
-     * </p>
-     * @return
-     */
-    public static JsonResult ok() {
-        return enumBuild(JsonStatusEnum.ok, Collections.emptyList());
-    }
-
-    /**
-     * <h3>成功，有返回值</h3>
-     * <p>
-     *     返回值格式:<br/>
-     *     {code:0,msg:"操作成功!",data:{@link Object}}
-     * </p>
-     * @param data
-     * @return
-     */
-    public static <T> JsonResult ok(T data) {
-        return enumBuild(JsonStatusEnum.ok, data);
-    }
-
-    /**
-     * <h3>自定义信息，无数据返回，默认返回空数组</h3>
-     * <p>
-     *     返回值格式:<br/>
-     *     {code:6000,msg:"自定义内容!",data:[]}
-     * </p>
-     * @return
-     */
-    public static JsonResult errorMsg(String msg) {
-        return build(JsonStatusEnum.errorMsg.getCode(), msg, Collections.emptyList());
-    }
-
-    /**
-     * <h3>自定义信息，有返回值</h3>
-     * <p>
-     *     返回值格式:<br/>
-     *     {code:6000,msg:"自定义内容!",data:{@link Object}}
-     * </p>
-     * @param data
-     * @return
-     */
-    public static <T>  JsonResult errorMsg(String msg, T data){
-        return build(JsonStatusEnum.errorMsg.getCode(), msg, data);
     }
 }
 

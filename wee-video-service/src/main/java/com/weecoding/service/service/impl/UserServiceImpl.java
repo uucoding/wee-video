@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.weecoding.common.enumerate.ErrorEnum;
 import com.weecoding.common.enumerate.IResultCode;
+import com.weecoding.common.exception.DefaultException;
 import com.weecoding.common.service.BaseServiceImpl;
 import com.weecoding.common.util.V;
 import com.weecoding.common.util.bean.BeanUtils;
@@ -13,6 +14,7 @@ import com.weecoding.service.mapper.UserMapper;
 import com.weecoding.service.model.User;
 import com.weecoding.service.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 用户service实现类
@@ -25,30 +27,51 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements UserService {
 
     @Override
-    public IResultCode register(UserForm userForm) throws Exception {
+    @Transactional(rollbackFor = Exception.class)
+    public void register(UserForm userForm) throws Exception {
         //1、校验入参
         if (V.isEmpty(userForm.getUsername()) || V.isEmpty(userForm.getPassword()) || V.isEmpty(userForm.getRePassword())) {
-            return UserResultEnum.USERNAME_PASSWORD_RE_PASSWORD_IS_EMPTY;
+            throw new DefaultException(UserResultEnum.USER_PARAMS_IS_EMPTY);
         }
         //2、校验两次密码是否一致
-        if (V.equals(userForm.getPassword(), userForm.getRePassword())) {
-            return UserResultEnum.PASSWORD_RE_PASSWORD_DIFFERENCE;
+        if (!V.equals(userForm.getPassword(), userForm.getRePassword())) {
+            throw new DefaultException(UserResultEnum.PASSWORD_RE_PASSWORD_DIFFERENCE);
         }
         //3、校验数据是否存在数据库: 根据用户名查找
         LambdaQueryWrapper<User> lambdaQueryWrapper = Wrappers.<User>lambdaQuery()
                 .eq(User::getUsername, userForm.getUsername());
         if (V.notEmpty(super.getOne(lambdaQueryWrapper))) {
-            return UserResultEnum.DB_EXIST_USER;
+            throw new DefaultException(UserResultEnum.DB_EXIST_USER);
         }
         //4、补全其他信息 todo 暂时密码明文存储
 //        userForm.
         User user = BeanUtils.copyBean(userForm, User.class);
         user.setNickname(user.getUsername());
         user.setFaceImage("/us");
-        if (super.save(user)) {
-            return UserResultEnum.STORAGE_USER_SUCCESS;
+        if (!super.save(user)) {
+            throw new DefaultException(ErrorEnum.ERROR);
         }
-        return ErrorEnum.ERROR;
+    }
+
+    @Override
+    public User login(UserForm userForm) throws Exception {
+        //1、校验入参
+        if (V.isEmpty(userForm.getUsername()) || V.isEmpty(userForm.getPassword())) {
+            throw new DefaultException(UserResultEnum.USER_PARAMS_IS_EMPTY);
+        }
+        //2、校验数据是否存在数据库: 根据用户名查找
+        LambdaQueryWrapper<User> lambdaQueryWrapper = Wrappers.<User>lambdaQuery()
+                .eq(User::getUsername, userForm.getUsername());
+        User dbUser = super.getOne(lambdaQueryWrapper);
+        //用户不存在，抛出异常
+        if (V.isEmpty(dbUser)) {
+            throw new DefaultException(UserResultEnum.DB_NOT_EXIST_USER);
+        }
+        //比较密码是否相同： TODO 未做加密
+        if (!V.equals(userForm.getPassword(), dbUser.getPassword())) {
+            throw new DefaultException(UserResultEnum.PASSWORD_ERROR);
+        }
+        return dbUser;
     }
 
 

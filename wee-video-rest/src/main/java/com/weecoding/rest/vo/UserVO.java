@@ -1,7 +1,5 @@
 package com.weecoding.rest.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -17,12 +15,6 @@ public class UserVO {
      * 用户名
      */
     private String username;
-
-    /**
-     * 密码: 密码不回显到前端
-     */
-    @JsonIgnore
-    private String password;
 
     /**
      * 头像

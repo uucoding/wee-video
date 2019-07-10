@@ -27,6 +27,6 @@ public class BaseEntity extends Bean {
     private Date createTime;
 
     @TableLogic
-    private boolean delete;
+    private boolean deleted;
 
 }

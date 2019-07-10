@@ -14,10 +14,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UserResultEnum implements IResultCode {
-    USERNAME_PASSWORD_RE_PASSWORD_IS_EMPTY(100, "用户名或密码为空!"),
+    USER_PARAMS_IS_EMPTY(100, "用户名或密码为空!"),
     PASSWORD_RE_PASSWORD_DIFFERENCE(101, "两次密码不一致!"),
-    DB_EXIST_USER(103, "用户已经存在!"),
-    STORAGE_USER_SUCCESS(104, "存储用户成功!"),
+    DB_EXIST_USER(103, "用户已存在!"),
+    DB_NOT_EXIST_USER(105, "用户不存在!"),
+    PASSWORD_ERROR(106, "密码错误!"),
 
     ;
 

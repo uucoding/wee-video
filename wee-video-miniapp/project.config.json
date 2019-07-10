@@ -14,7 +14,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
-	"appid": "wxdb8820ee16174057",
+	"appid": "这里是你的小程序appid",
 	"projectname": "miniapp-video",
 	"debugOptions": {
 		"hidedInDevtools": []

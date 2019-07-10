@@ -1,0 +1,5 @@
+rootProject.name = 'wee-video'
+include 'wee-common'
+include 'wee-video-rest'
+include 'wee-video-service'
+

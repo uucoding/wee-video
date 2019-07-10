@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    #数据库为线上数据库，此处隐藏到jdbc文件中，如需替换只需要将：数据源的${host}替换成自己的即可
+    active: jdbc
+  datasource:
+    url: jdbc:mysql://${host}:3306/miniapp_videos?charaterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver

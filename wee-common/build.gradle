@@ -1,0 +1,28 @@
+dependencies {
+    compile('org.projectlombok:lombok',
+            'org.apache.commons:commons-lang3',
+            'org.springframework.boot:spring-boot-starter-log4j2',
+            // 引入mybatis-plus
+            'com.baomidou:mybatis-plus-boot-starter:3.1.2')
+
+    compile('com.alibaba:fastjson:1.2.58',
+            'com.google.zxing:javase:3.3.3',
+    )
+}
+
+//打包至本地仓库
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+print localMavenRepo
+uploadArchives {
+    repositories {
+        mavenDeployer   {
+            repository(url: localMavenRepo)
+            //构造项目的Pom文件
+            pom.project {
+                name = project.name
+                version = project.version
+                groupId = project.group
+            }
+        }
+    }
+}

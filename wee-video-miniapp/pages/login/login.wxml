@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- logo -->
+  <view class='logo-container'>
+    <view>
+        <image class='logo max-logo' src='../resource/images/logo.png'></image>
+    </view>
+    <view class='theme-default-color'>mini短视频</view>
+  </view>
+  <!-- login form -->
+  <view class='form-container'>
+    <form class='login-form' bindsubmit='submitLogin'>
+    <!-- 用户名 -->
+      <view class='input-container'>
+        <image class='icon mr10 ml10' src='../resource/images/username.png'></image>
+        <input class='username-input base-input fs15 lh45' name='username' placeholder='用户名'></input>
+      </view>
+      <view class='line mb30'></view>
+      <!-- 密码 -->
+      <view class='input-container'>
+        <image class='icon mr10 ml10' src='../resource/images/password.png'></image>
+        <input class='password-input base-input fs15 lh45' name='password' password='true' placeholder='密码'></input>
+      </view>
+      <view class='line mb30'></view>
+      <!-- 注册账号 -->
+      <view class='nav-container mb30'>
+        <navigator class='nav-register theme-default-color' url="../register/register">注册账号</navigator>
+      </view>
+      <!-- 登陆 -->
+      <view class='btn-container'>
+        <button class='btn btn-login theme-bg-color' form-type='submit'>
+          <image class='w30 h30 btn-icon forward' src='../resource/images/foward.png'></image>
+        </button>
+      </view>
+    </form>
+  </view>
+</view>

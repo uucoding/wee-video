@@ -1,0 +1,9 @@
+
+build/
+out/
+/.idea/
+gradle/
+.gradle/
+*.iml
+
+application-jdbc.yml

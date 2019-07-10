@@ -1,0 +1,22 @@
+/**index.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+/*input容器*/
+.input-container {
+  display: flex;
+}
+
+input {
+  width: 100%
+}
+
+.btn-register {
+  width: 80%;
+}

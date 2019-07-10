@@ -1,0 +1,41 @@
+//构建方式
+buildscript {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    repositories {
+        mavenLocal() //优先查找本地maven库，性能最好
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+//全局共享配置
+allprojects {
+    group = 'com.weecoding'
+    version = '0.0.1'
+    repositories {
+        mavenLocal() //优先查找本地maven库，性能最好
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+//子项目通用配置
+subprojects {
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    dependencies {
+        testCompile('junit:junit:4.12')
+    }
+    configurations {
+        //移除spring boot 默认logger依赖
+        all*.exclude module: 'spring-boot-starter-logging'
+    }
+}

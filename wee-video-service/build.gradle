@@ -1,0 +1,14 @@
+
+dependencies {
+    compile project(":wee-common")
+
+    compile(
+            'mysql:mysql-connector-java',
+    )
+    compile(
+            'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1',
+            'com.baomidou:mybatis-plus-boot-starter:3.1.2',
+
+    )
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

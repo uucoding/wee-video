@@ -1,5 +1,6 @@
 package com.weecoding.service.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
@@ -16,6 +17,7 @@ public class User extends BaseEntity {
     /**
      * 用户名
      */
+    @TableField
     private String username;
 
     /**

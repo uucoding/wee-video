@@ -1,5 +1,6 @@
 package com.weecoding.common.util.response;
 
+import com.weecoding.common.enumerate.IResultCode;
 import com.weecoding.common.enumerate.JsonStatusEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,18 @@ import java.util.Collections;
 @Data
 @NoArgsConstructor
 public class JsonResult<T> extends JsonAccept<T> {
+
+    public JsonResult(IResultCode iResultCode, T data) {
+        super(iResultCode.getCode(), iResultCode.getMsg(), data);
+    }
+
+    public JsonResult(IResultCode iResultCode) {
+        super(iResultCode.getCode(), iResultCode.getMsg(), null);
+    }
+
+    public static JsonResult iResultCode(IResultCode iResultCode) {
+        return new JsonResult(iResultCode);
+    }
 
     /**构造*/
     public JsonResult(Integer code, String msg, T data) {

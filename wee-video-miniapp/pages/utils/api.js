@@ -7,7 +7,7 @@ let server = {
 let domain = `${server.host}:${server.port}`;
 
 //api 配置
-let API = {
+let api = {
   // 用户相关
   user : {
     register: `${domain}/api/v1/user/register`,
@@ -15,4 +15,4 @@ let API = {
   }
 }
 
-module.exports.API = API
+module.exports.api = api

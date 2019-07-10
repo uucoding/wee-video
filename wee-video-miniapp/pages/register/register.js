@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var {API} = require('../utils/api.js')
+var {api} = require('../utils/api.js')
 
 Page({
   data: {
@@ -14,7 +14,7 @@ Page({
       user: e.detail.value
     })
     wx.request({
-      url: API.user.register,
+      url: api.user.register,
       dataType: 'json',
       method: 'post',
       data: this.data.user,

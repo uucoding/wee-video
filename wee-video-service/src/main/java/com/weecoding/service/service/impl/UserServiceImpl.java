@@ -3,7 +3,6 @@ package com.weecoding.service.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.weecoding.common.enumerate.ErrorEnum;
-import com.weecoding.common.enumerate.IResultCode;
 import com.weecoding.common.exception.DefaultException;
 import com.weecoding.common.service.BaseServiceImpl;
 import com.weecoding.common.util.V;
@@ -47,7 +46,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 //        userForm.
         User user = BeanUtils.copyBean(userForm, User.class);
         user.setNickname(user.getUsername());
-        user.setFaceImage("/us");
+        user.setFaceImage(".png");
         if (!super.save(user)) {
             throw new DefaultException(ErrorEnum.ERROR);
         }

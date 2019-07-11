@@ -29,7 +29,7 @@ public class ExceptionAdviceHandler {
     @ExceptionHandler(Exception.class)
     public JsonResult adviceException(Exception e) {
         log.error("【exception】<==异常：", e);
-        return JsonResult.errorMsg(e.getMessage());
+        return JsonResult.errorMsg("系统异常！");
     }
 
     /**

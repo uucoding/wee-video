@@ -1,14 +1,9 @@
 package com.weecoding.rest.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.weecoding.common.enumerate.IResultCode;
-import com.weecoding.common.handle.EnumHandler;
-import com.weecoding.common.util.V;
+import com.weecoding.common.controller.BaseController;
 import com.weecoding.common.util.bean.BeanUtils;
 import com.weecoding.common.util.response.JsonResult;
 import com.weecoding.rest.vo.UserVO;
-import com.weecoding.service.enumerate.UserResultEnum;
 import com.weecoding.service.form.UserForm;
 import com.weecoding.service.model.User;
 import com.weecoding.service.service.UserService;
@@ -26,11 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/user")
-@ControllerAdvice
-public class UserRestController {
-
-    @Autowired
-    private UserService userService;
+public class UserRestController extends BaseController<UserService> {
 
     /***
      * 注册用户
@@ -40,11 +31,10 @@ public class UserRestController {
     @PostMapping("/register")
     public JsonResult register(@RequestBody UserForm entity) throws Exception{
         //注册用户
-        userService.register(entity);
+        getBaseService().register(entity);
         //注册完毕，直接登陆
         return login(entity);
     }
-
 
     /**
      * 登陆用户
@@ -53,7 +43,7 @@ public class UserRestController {
      */
     @PostMapping("/login")
     public JsonResult login(@RequestBody UserForm entity) throws Exception{
-        User user = userService.login(entity);
+        User user = getBaseService().login(entity);
         return JsonResult.ok(BeanUtils.copyBean(user, UserVO.class));
     }
 

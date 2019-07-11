@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- *
+ * springboot启动类
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-04  18:10

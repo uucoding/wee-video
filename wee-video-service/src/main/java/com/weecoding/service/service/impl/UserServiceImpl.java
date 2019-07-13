@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.weecoding.common.enumerate.ErrorEnum;
 import com.weecoding.common.exception.DefaultException;
 import com.weecoding.common.service.BaseServiceImpl;
+import com.weecoding.common.util.SecretUtil;
 import com.weecoding.common.util.V;
 import com.weecoding.common.util.bean.BeanUtils;
 import com.weecoding.service.enumerate.UserResultEnum;
@@ -42,9 +43,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         if (V.notEmpty(super.getOne(lambdaQueryWrapper))) {
             throw new DefaultException(UserResultEnum.DB_EXIST_USER);
         }
-        //4、补全其他信息 todo 暂时密码明文存储
+        //4、补全其他信息
 //        userForm.
         User user = BeanUtils.copyBean(userForm, User.class);
+        user.setPassword(SecretUtil.encryptMD5(user.getPassword()));
         user.setNickname(user.getUsername());
         user.setFaceImage(".png");
         if (!super.save(user)) {
@@ -66,8 +68,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         if (V.isEmpty(dbUser)) {
             throw new DefaultException(UserResultEnum.DB_NOT_EXIST_USER);
         }
-        //比较密码是否相同： TODO 未做加密
-        if (!V.equals(userForm.getPassword(), dbUser.getPassword())) {
+        //3、比较密码是否相同：
+        if (!V.equals(SecretUtil.encryptMD5(userForm.getPassword()), dbUser.getPassword())) {
             throw new DefaultException(UserResultEnum.PASSWORD_ERROR);
         }
         return dbUser;

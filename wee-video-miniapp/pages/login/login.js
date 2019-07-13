@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const { $ } = require("../utils/request.js")
+const { toastSuccess} = require("../utils/toast.js")
 Page({
   data: {
     loginData: {
@@ -15,8 +16,8 @@ Page({
     $.post({
       url: app.api.user.login,
       data: e.detail.value,
-      success: function(data) {
-        console.data(data)
+      callback: function(data) {
+        toastSuccess("登陆成功");
       }
     })
   }

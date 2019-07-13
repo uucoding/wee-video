@@ -78,7 +78,7 @@ public class S extends StringUtils{
      * @param customCodeType {@link SecurityCodeEnum} 不指定时默认为：{@link SecurityCodeEnum#NUMBER}
      * @return
      */
-    public static String newRandomNum(int length, SecurityCodeEnum customCodeType) {
+    public static String newRandom(int length, SecurityCodeEnum customCodeType) {
         String originData;
         if (Objects.isNull(customCodeType) || SecurityCodeEnum.NUMBER.equals(customCodeType)) {
             originData = join(BaseConstants.NUMBER_ARR);

@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const { $ } = require("../utils/request.js")
 Page({
   data: {
     loginData: {
@@ -12,8 +12,12 @@ Page({
   //登陆
   submitLogin: function(e) {
     this.data.loginData = e.detail.value
-    console.log(e.detail.value.username)
-    console.log(e.detail.value.password)
-    console.log(this.data.loginData)
+    $.post({
+      url: app.api.user.login,
+      data: e.detail.value,
+      success: function(data) {
+        console.data(data)
+      }
+    })
   }
 })

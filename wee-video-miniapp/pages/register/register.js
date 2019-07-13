@@ -1,8 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var {api} = require('../utils/api.js')
-
+const {$} = require("../utils/request.js")
 Page({
   data: {
     user: {}
@@ -10,15 +9,10 @@ Page({
   /**注册 */
   submitRegister: function(e) {
     let _this = this;
-    _this.setData({
-      user: e.detail.value
-    })
-    wx.request({
-      url: api.user.register,
-      dataType: 'json',
-      method: 'post',
-      data: this.data.user,
-      success: function(data) {
+    $.post({
+      url: app.api.user.register,
+      data: e.detail.value,
+      success: function (data){
         console.log(data)
       }
     })

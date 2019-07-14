@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='banner-container'>
+  </view>
+  <view class='info-container'>
+    <view class='header-container'>
+      <view class='avator-container'>
+        <image class='avator' src='{{user.faceImage}}'></image>
+        <view class='edit'>编辑</view>
+      </view>
+      <view class='user-base-info-container'>
+        <text class='theme-white-color fsw20'>{{user.nickname}}</text>
+      </view>
+    </view>
+    <view class='user-other-info-container'>
+      <text class='theme-white-color'>{{user.likeCount}} 获赞</text>
+      <text class='theme-white-color'>{{user.followCount}} 关注</text>
+      <text class='theme-white-color'>{{user.fansCount}} 粉丝</text>
+    </view>
+    <!-- 添加视频 -->
+    <view class='upload-container'>
+      <view class='upload-btn'>
+        <image class='icon' src='../resource/images/camera.png'></image>
+        <text>添加视频</text>
+      </view>
+
+    </view>
+    <!-- tab切换 -->
+    <view class="tab-btn">
+      <view wx:for="{{tabs}}" class='{{index == tabActiveIndex? "active" : ""}}' data-index='{{index}}' bindtap='triggerTab'>{{item}}</view>
+    </view>
+  </view>
+  <view class="tab-content">
+    <view class='{{0 == tabActiveIndex? "active" : ""}}' data-index='0'>暂无内容1</view>
+    <view class='{{1 == tabActiveIndex? "active" : ""}}' data-index='1'>暂无内容2</view>
+  </view>
+</view>

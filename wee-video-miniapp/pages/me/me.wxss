@@ -1,0 +1,101 @@
+/**index.wxss**/
+page {
+  /* background-color: rgba(167, 226, 236, 0.151); */
+  background-color: black;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.banner-container {
+  padding: 80rpx;
+  /* background-color: rgb(245, 236, 236); */
+  /* border:  */
+}
+.info-container {
+  background-color:  #111;
+  z-index: 10000;
+}
+.header-container {
+  position: relative;
+  top: -20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.avator-container {
+  position: relative;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: solid 2px rgba(0, 0, 0, 0.33);
+  overflow: hidden;
+}
+.avator-container > .avator {
+  background-color: white;
+}
+.avator-container > .edit {
+  position: absolute;
+  bottom: 2px;
+  width: 80px;
+  font-size: 15px;
+  text-align: center;
+  color: rgba(119, 110, 110, 0.596);
+  background-color: rgba(0, 0, 0, 0.151);
+}
+.user-other-info-container {
+  display: flex;
+  justify-content: left
+}
+.user-other-info-container > text {
+  margin-left: 30rpx;
+}
+.upload-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rpx;
+}
+.upload-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(53, 52, 52);
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: bold;
+  width: 95%;
+  border-radius: 10rpx;
+}
+.tab-btn {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  color: #eee;
+  height: 80rpx;
+}
+.tab-btn > view {
+  flex: 1;
+  text-align: center;
+  line-height: 80rpx;
+}
+.tab-btn > .active {
+  color: white;
+  border-bottom: 2px solid yellow;
+  font-weight: bold;
+}
+.tab-content > view {
+  display: none;
+  color: white;
+}
+.tab-content > .active {
+  display: block;
+}
+.footer-container {
+  display: flex;
+  background-color: green;
+}

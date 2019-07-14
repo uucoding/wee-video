@@ -6,7 +6,12 @@
  * code表示状态码，只有0表示响应成功，其他状态码均为失败，data不论成功或失败都有可能存在数据()，或不存在数据
  * 请求错误的时候，统一提示网络异常
  */
-let { toastSuccess, toastError, toastTip } = require("./toast.js")
+const {
+  toastSuccess,
+  toastError,
+  toastTip
+} = require("./toast.js");
+
 let Request = {
   /**
    * get请求
@@ -18,13 +23,16 @@ let Request = {
    * 注：请求成功的回调函数如果未设置，则使用默认的成功回调函数
    *    使用默认函数时，默认处理的方案只提示“操作成功”，如需要自定义，请穿入成功后执行函数callback
    */
-  get: function (params) {
+  get: function ({ url, data, success, callback} = params) {
+    wx.showLoading({
+      title: '加载中...'
+    })
     wx.request({
       url: params.url,
       data: params.data,
       header: {
         'content-type': 'application/json',
-        
+
         'token': wx.getStorageSync('token') || ''
       },
       method: 'GET',
@@ -33,17 +41,16 @@ let Request = {
         //默认处理方案
         let response = data.data;
         if (response.code === 0) {
-          if (params.callback) {
-            params.callback(data);
-          } else {
-            toastSuccess(response.msg)
-          }
+          params.callback ? params.callback(data) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
         }
-      }, 
-      fail: function (e) {
+      },
+      fail: function(e) {
         toastError('网络异常，请检查网络设置')
+      },
+      complete: function () {
+        wx.hideLoading()
       }
     })
   },
@@ -57,33 +64,36 @@ let Request = {
    * 注：请求成功的回调函数如果未设置，则使用默认的成功回调函数
    *    使用默认函数时，默认处理的方案只提示“操作成功”，如需要自定义，请穿入成功后执行函数callback
    */
-  post: function(params) {
+  post: function ({ url, data, success, callback }) {
+    wx.showLoading({
+      title: '加载中...'
+    })
     wx.request({
-      url: params.url,
-      data: params.data,
+      url: url,
+      data: data,
       header: {
         'content-type': 'application/json',
         'token': wx.getStorageSync('token') || ''
       },
       method: 'POST',
       dataType: 'json',
-      success: params.success || function (data) {
+      success: success || function(data) {
         //默认处理方案
         let response = data.data;
         if (response.code === 0) {
-          if (params.callback) {
-            params.callback(data);
-          } else {
-            toastSuccess(response.msg)
-          }
+          callback ? callback(data) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         toastError('网络异常，请检查网络设置')
+      },
+      complete: function() {
+        wx.hideLoading()
       }
     })
   }
 }
+
 module.exports.$ = Request

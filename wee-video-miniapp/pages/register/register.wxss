@@ -1,4 +1,4 @@
-/**index.wxss**/
+/**register.wxss**/
 .container {
   height: 100%;
   display: flex;

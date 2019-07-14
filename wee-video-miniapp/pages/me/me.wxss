@@ -1,6 +1,5 @@
-/**index.wxss**/
+/**me.wxss**/
 page {
-  /* background-color: rgba(167, 226, 236, 0.151); */
   background-color: black;
 }
 .container {
@@ -12,8 +11,6 @@ page {
 }
 .banner-container {
   padding: 80rpx;
-  /* background-color: rgb(245, 236, 236); */
-  /* border:  */
 }
 .info-container {
   background-color:  #111;

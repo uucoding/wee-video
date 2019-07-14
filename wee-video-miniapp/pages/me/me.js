@@ -16,7 +16,8 @@ Page({
       likeCount: 20,
       followCount: 33,
       fansCount: 56,
-    }
+    },
+    videoList: [],
   },
 
   /**

@@ -1,4 +1,4 @@
-/**index.wxss**/
+/**login.wxss**/
 .container {
   height: 100%;
   display: flex;
@@ -17,10 +17,7 @@
 /*input容器*/
 .input-container {
   display: flex;
-  /* align-items: center; */
 }
-
-
 input {
   width: 100%
 }

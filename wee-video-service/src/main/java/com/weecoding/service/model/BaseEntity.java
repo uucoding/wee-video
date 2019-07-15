@@ -11,6 +11,7 @@ import java.util.Date;
 
 /**
  * 当前项目基础实体
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-04  21:52
@@ -19,7 +20,9 @@ import java.util.Date;
 public class BaseEntity extends Bean {
     private static final long serialVersionUID = 4318026767280545749L;
 
-    /**id：uuid类型*/
+    /**
+     * id：uuid类型
+     */
     @TableId(type = IdType.UUID)
     private String id;
 

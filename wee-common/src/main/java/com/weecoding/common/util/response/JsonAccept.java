@@ -16,12 +16,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JsonAccept<T> {
-    /**响应状态码*/
+    /**
+     * 响应状态码
+     */
     private Integer code;
 
-    /**响应描述*/
+    /**
+     * 响应描述
+     */
     private String msg;
 
-    /**响应的数据*/
+    /**
+     * 响应的数据
+     */
     private T data;
 }

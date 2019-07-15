@@ -1,4 +1,5 @@
 package com.weecoding.common.util.bean;
+
 import lombok.extern.slf4j.Slf4j;
 
 import java.beans.IntrospectionException;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
+ * bean拷贝帮助类：可以结合{@link CopyField}使用
  * @author : wee
  * @version v1.0
  * @Description: 常用bean相关方法
@@ -22,10 +25,11 @@ public class BeanUtils {
     /**
      * <h3>拷贝一个对象的属性至另一个对象</h3>
      * <p>
-     *     支持两个对象之间不同属性名称进行拷贝，使用注解{@link CopyField}
+     * 支持两个对象之间不同属性名称进行拷贝，使用注解{@link CopyField}
      * </p>
-     * @param originBean  源对象 使用注解{@link CopyField#targetName()}
-     * @param targetBean  目标对象 使用注解{@link CopyField#originName()}
+     *
+     * @param originBean 源对象 使用注解{@link CopyField#targetName()}
+     * @param targetBean 目标对象 使用注解{@link CopyField#originName()}
      */
     public static void copyBean(Object originBean, Object targetBean) {
         Map<String, Object> originFieldKeyWithValueMap = new HashMap<>(16);
@@ -38,15 +42,16 @@ public class BeanUtils {
 
     /**
      * <h3>拷贝一个对象的属性至另一个对象</h3>
-     <p>
-     *     支持两个对象之间不同属性名称进行拷贝，使用注解{@link CopyField}
+     * <p>
+     * 支持两个对象之间不同属性名称进行拷贝，使用注解{@link CopyField}
      * </p>
-     * @param originBean 源对象 使用注解{@link CopyField#targetName()}
+     *
+     * @param originBean      源对象 使用注解{@link CopyField#targetName()}
      * @param targetBeanClass 目标对象class 使用注解{@link CopyField#originName()}
      * @param <T>
      * @return
      */
-    public static <T> T copyBean(Object originBean, Class<T> targetBeanClass){
+    public static <T> T copyBean(Object originBean, Class<T> targetBeanClass) {
         try {
             T targetBean = targetBeanClass.newInstance();
             copyBean(originBean, targetBean);
@@ -59,15 +64,16 @@ public class BeanUtils {
 
     /**
      * <h3>拷贝一个对象的属性至另一个对象</h3>
-     <p>
-     *     支持两个对象之间不同属性名称进行拷贝，使用注解{@link CopyField}
+     * <p>
+     * 支持两个对象之间不同属性名称进行拷贝，使用注解{@link CopyField}
      * </p>
-     * @param originBeanList 源对象 使用注解{@link CopyField#targetName()}
+     *
+     * @param originBeanList  源对象 使用注解{@link CopyField#targetName()}
      * @param targetBeanClass 目标对象class 使用注解{@link CopyField#originName()}
      * @param <T>
      * @return
      */
-    public static <T> List<T> copyBeanList(List originBeanList, Class<T> targetBeanClass){
+    public static <T> List<T> copyBeanList(List originBeanList, Class<T> targetBeanClass) {
         try {
             List<T> targetBeanList = new ArrayList<>();
             for (Object originBean : originBeanList) {
@@ -85,10 +91,11 @@ public class BeanUtils {
     /**
      * 生成需要被拷贝的属性字典 属性-属性值<br/>
      * 递归取父类属性值
-     * @param propertyDescriptor  属性描述器，可以获取bean中的属性及方法
-     * @param originBean 待拷贝的bean
+     *
+     * @param propertyDescriptor         属性描述器，可以获取bean中的属性及方法
+     * @param originBean                 待拷贝的bean
      * @param originFieldKeyWithValueMap 存放待拷贝的属性和属性值
-     * @param beanClass 待拷贝的class[可能是超类的class]
+     * @param beanClass                  待拷贝的class[可能是超类的class]
      */
     private static void generateOriginFieldWithValue(PropertyDescriptor propertyDescriptor, Object originBean, Map<String, Object> originFieldKeyWithValueMap, Class<?> beanClass) {
         /**如果不存在超类，那么跳出循环*/
@@ -127,11 +134,10 @@ public class BeanUtils {
     }
 
     /**
-     *
-     * @param propertyDescriptor 属性描述器，获取当前传入属性的（getter/setter）方法
-     * @param targetBean 目标容器bean
+     * @param propertyDescriptor         属性描述器，获取当前传入属性的（getter/setter）方法
+     * @param targetBean                 目标容器bean
      * @param originFieldKeyWithValueMap 待拷贝的属性和属性值
-     * @param beanClass 待设置的class[可能是超类的class]
+     * @param beanClass                  待设置的class[可能是超类的class]
      */
     private static void settingTargetFieldWithValue(PropertyDescriptor propertyDescriptor, Object targetBean, Map<String, Object> originFieldKeyWithValueMap, Class<?> beanClass) {
         /**如果不存在超类，那么跳出循环*/

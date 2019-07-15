@@ -2,8 +2,6 @@ package com.weecoding.service.model;
 
 import lombok.Data;
 
-import java.security.PrivateKey;
-
 /**
  * 视频表
  *

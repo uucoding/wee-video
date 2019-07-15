@@ -1,11 +1,10 @@
 package com.weecoding.service.service;
 
 import com.weecoding.common.service.IBaseService;
-import com.weecoding.service.model.BackgroundMusic;
 import com.weecoding.service.model.Video;
 
 /**
- *  视频service
+ * 视频service
  *
  * @author : wee
  * @version : v1.0

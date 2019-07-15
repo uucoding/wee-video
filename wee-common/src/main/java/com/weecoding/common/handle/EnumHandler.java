@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 /**
  * 枚举统一助手类
+ *
  * @author : wee
  * @version v1.0
  * @Description: 枚举工具类
@@ -19,9 +20,10 @@ public class EnumHandler {
      * 根据code和枚举类型查询对应的枚举对象<br/>
      * 用来响应设置自定义内容{@link com.weecoding.common.util.response.JsonResult}的值<br/>
      * 如果查询不到，默认返回{@link ErrorEnum}的提示
-     * @param code    需要枚举
-     * @param tClass  枚举
-     * @return      返回T类型的枚举
+     *
+     * @param code   需要枚举
+     * @param tClass 枚举
+     * @return 返回T类型的枚举
      */
     public static <T extends IResultCode> T findEnumByCode(Integer code, Class<T> tClass) {
         return Arrays.stream(tClass.getEnumConstants())

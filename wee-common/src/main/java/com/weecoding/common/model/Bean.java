@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 空实体，主要为了反射
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-04  21:53

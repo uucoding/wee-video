@@ -1,7 +1,6 @@
 package com.weecoding.service.mapper;
 
 import com.weecoding.common.mapper.IBaseMapper;
-import com.weecoding.service.model.Comment;
 import com.weecoding.service.model.SearchRecord;
 
 /**

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.Collections;
 
 /**
+ * 响应数据
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-06  15:58
@@ -100,7 +102,6 @@ public class JsonResult<T> extends JsonAccept<T> {
     }
 
     /**
-     *
      * @param iResultCode
      * @param data
      */

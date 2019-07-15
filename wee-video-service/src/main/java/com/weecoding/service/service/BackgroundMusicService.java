@@ -4,7 +4,7 @@ import com.weecoding.common.service.IBaseService;
 import com.weecoding.service.model.BackgroundMusic;
 
 /**
- *  service
+ * 背景音乐service
  *
  * @author : wee
  * @version : v1.0

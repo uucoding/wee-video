@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
  * 异常统一捕获类
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-10  22:04
@@ -22,6 +22,7 @@ public class ExceptionAdviceHandler {
 
     /**
      * 捕获所有Exception异常
+     *
      * @param e
      * @return
      */
@@ -34,6 +35,7 @@ public class ExceptionAdviceHandler {
 
     /**
      * 捕获抛出的默认异常
+     *
      * @param de
      * @return
      */

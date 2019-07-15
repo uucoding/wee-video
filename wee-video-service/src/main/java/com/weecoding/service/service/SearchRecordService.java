@@ -5,7 +5,7 @@ import com.weecoding.service.model.BackgroundMusic;
 import com.weecoding.service.model.SearchRecord;
 
 /**
- *  搜索记录service
+ * 搜索记录service
  *
  * @author : wee
  * @version : v1.0

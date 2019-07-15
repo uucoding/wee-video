@@ -4,6 +4,7 @@ import lombok.Data;
 
 /**
  * 用户vo类
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-09  16:33

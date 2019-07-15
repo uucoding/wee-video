@@ -2,6 +2,8 @@ package com.weecoding.service.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.weecoding.common.enumerate.ErrorEnum;
 import com.weecoding.common.exception.DefaultException;
 import com.weecoding.common.service.BaseServiceImpl;
@@ -13,8 +15,7 @@ import com.weecoding.service.form.UserForm;
 import com.weecoding.service.mapper.UserMapper;
 import com.weecoding.service.model.User;
 import com.weecoding.service.service.UserService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * 用户service实现类
@@ -46,7 +47,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         //4、补全其他信息
 //        userForm.
         User user = BeanUtils.copyBean(userForm, User.class);
-        user.setPassword(SecretUtil.encryptMD5(user.getPassword()));
+        user.setPassword(SecretUtil.encryptMD5(    user.getPassword()));
         user.setNickname(user.getUsername());
         user.setFaceImage(".png");
         if (!super.save(user)) {

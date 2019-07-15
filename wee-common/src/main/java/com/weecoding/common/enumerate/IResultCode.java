@@ -8,12 +8,14 @@ package com.weecoding.common.enumerate;
 public interface IResultCode {
     /**
      * 获取Code
+     *
      * @return
      */
     Integer getCode();
 
     /**
      * 获取提示信息
+     *
      * @return
      */
     String getMsg();

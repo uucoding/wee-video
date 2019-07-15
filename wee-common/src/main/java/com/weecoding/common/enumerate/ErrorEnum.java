@@ -5,6 +5,7 @@ import lombok.Getter;
 
 /**
  * 默认错误消息
+ *
  * @author : wee
  * @version v1.0
  * @Date 2019-07-10  17:35
@@ -15,9 +16,13 @@ public enum ErrorEnum implements IResultCode {
     ERROR(4000, "操作失败"),
     ;
 
-    /**code*/
+    /**
+     * code
+     */
     private Integer code;
 
-    /**描述*/
+    /**
+     * 描述
+     */
     private String msg;
 }

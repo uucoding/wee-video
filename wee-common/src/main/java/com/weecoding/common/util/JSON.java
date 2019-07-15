@@ -3,10 +3,12 @@ package com.weecoding.common.util;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.weecoding.common.model.Bean;
+
 import java.util.List;
 
 /**
  * json处理
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-04  22:33
@@ -15,6 +17,7 @@ public class JSON {
 
     /**
      * 将json对象转化成Object对象
+     *
      * @param text
      * @return
      */
@@ -24,6 +27,7 @@ public class JSON {
 
     /**
      * 将json对象转化成bean对象
+     *
      * @param text
      * @param beanClass
      * @param <T>
@@ -35,6 +39,7 @@ public class JSON {
 
     /**
      * 将json集合转化成指定Bean
+     *
      * @param text
      * @param type 需要转化bean的类型
      * @param <T>  extends BaseBean
@@ -46,6 +51,7 @@ public class JSON {
 
     /**
      * 将Object转化成json字符串
+     *
      * @param object
      * @return
      */

@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- *
  * 用户相关返回码
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-10  17:22

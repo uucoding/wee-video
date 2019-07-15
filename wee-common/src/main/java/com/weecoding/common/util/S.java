@@ -9,12 +9,13 @@ import java.util.*;
 
 /**
  * 字符串常用操作：继承{@link StringUtils}
+ *
  * @author : wee
  * @version : v 1.0
  * @Date 2019-07-04  23:25
  */
 @Slf4j
-public class S extends StringUtils{
+public class S extends StringUtils {
 
 
     /***
@@ -22,7 +23,7 @@ public class S extends StringUtils{
      * @param stringList
      * @return
      */
-    public static String join(List<String> stringList){
+    public static String join(List<String> stringList) {
         return StringUtils.join(stringList, BaseConstants.EN_COMMA);
     }
 
@@ -31,7 +32,7 @@ public class S extends StringUtils{
      * @param stringArray
      * @return
      */
-    public static String join(String[] stringArray){
+    public static String join(String[] stringArray) {
         return StringUtils.join(stringArray, BaseConstants.EN_COMMA);
     }
 
@@ -40,12 +41,13 @@ public class S extends StringUtils{
      * @param string
      * @return
      */
-    public static String[] split(String string){
+    public static String[] split(String string) {
         return V.isEmpty(string) ? null : string.split(BaseConstants.EN_COMMA);
     }
 
     /**
      * 获得随机串
+     *
      * @return
      */
     public static String newUuid() {
@@ -56,7 +58,7 @@ public class S extends StringUtils{
      * 将首字母转为小写
      * @return
      */
-    public static String lowerFirst(String string){
+    public static String lowerFirst(String string) {
         return V.isEmpty(string) ? null : (String.valueOf(string.charAt(0)).toLowerCase() + string.substring(1));
 
     }
@@ -71,6 +73,7 @@ public class S extends StringUtils{
         }
         return null;
     }
+
     /***
      * 生成指定位数的数字/验证码
      *

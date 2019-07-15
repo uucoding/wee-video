@@ -7,8 +7,9 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * 用户的form表单
+ *
  * @author : wee
- * @version : v todo
+ * @version : v1.0
  * @Date 2019-07-10  16:42
  */
 @Data

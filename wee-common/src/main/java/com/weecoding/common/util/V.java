@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * 校验类
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-05  00:18
@@ -21,7 +22,7 @@ public class V {
      * @param value
      * @return
      */
-    public static boolean isEmpty(String value){
+    public static boolean isEmpty(String value) {
         return S.isBlank(value);
     }
 
@@ -30,15 +31,16 @@ public class V {
      * @param values
      * @return
      */
-    public static boolean isEmpty(String[] values){
+    public static boolean isEmpty(String[] values) {
         return values == null || values.length == 0;
     }
+
     /***
      * 时间数组是否不为空
      * @param dates
      * @return
      */
-    public static boolean isEmpty(Date[] dates){
+    public static boolean isEmpty(Date[] dates) {
         return dates == null || dates.length == 0;
     }
 
@@ -56,7 +58,7 @@ public class V {
      * @param obj
      * @return
      */
-    public static boolean isEmpty(Map obj){
+    public static boolean isEmpty(Map obj) {
         return obj == null || obj.isEmpty();
     }
 
@@ -65,23 +67,18 @@ public class V {
      * @param obj
      * @return
      */
-    public static boolean isEmpty(Object obj){
-        if(obj instanceof String){
-            return isEmpty((String)obj);
-        }
-        else if(obj instanceof Collection){
-            return isEmpty((Collection)obj);
-        }
-        else if(obj instanceof Map){
-            return isEmpty((Map)obj);
-        }
-        else if(obj instanceof String[]){
-            return isEmpty((String[])obj);
-        }
-        else if(obj instanceof Date[]){
-            return isEmpty((Date[])obj);
-        }
-        else{
+    public static boolean isEmpty(Object obj) {
+        if (obj instanceof String) {
+            return isEmpty((String) obj);
+        } else if (obj instanceof Collection) {
+            return isEmpty((Collection) obj);
+        } else if (obj instanceof Map) {
+            return isEmpty((Map) obj);
+        } else if (obj instanceof String[]) {
+            return isEmpty((String[]) obj);
+        } else if (obj instanceof Date[]) {
+            return isEmpty((Date[]) obj);
+        } else {
             return obj == null;
         }
     }
@@ -91,7 +88,7 @@ public class V {
      * @param obj
      * @return
      */
-    public static boolean notEmpty(Object obj){
+    public static boolean notEmpty(Object obj) {
         return !isEmpty(obj);
     }
 
@@ -100,7 +97,7 @@ public class V {
      * @param value
      * @return
      */
-    public static boolean notEmpty(String value){
+    public static boolean notEmpty(String value) {
         return !isEmpty(value);
     }
 
@@ -109,7 +106,7 @@ public class V {
      * @param values
      * @return
      */
-    public static boolean notEmpty(String[] values){
+    public static boolean notEmpty(String[] values) {
         return !isEmpty(values);
     }
 
@@ -129,7 +126,7 @@ public class V {
      * @param target
      * @return
      */
-    public static boolean equals(Object source, Object target){
+    public static boolean equals(Object source, Object target) {
         return Objects.equals(source, target);
     }
 
@@ -139,7 +136,7 @@ public class V {
      * @param target
      * @return
      */
-    public static boolean notEquals(Object source, Object target){
+    public static boolean notEquals(Object source, Object target) {
         return !equals(source, target);
     }
 

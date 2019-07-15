@@ -12,8 +12,9 @@ import java.util.Date;
 
 /**
  * 时间工具类
- *
+ * <p>
  * 更多时间格式参考{@link DateFormatEnum}
+ *
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-05  00:27
@@ -68,13 +69,13 @@ public class D extends DateUtils {
      * @throws ParseException
      */
     public static Date dateString2Date(String date) {
-        return convert2FormatDate(date,DateFormatEnum.yyyy_MM_dd);
+        return convert2FormatDate(date, DateFormatEnum.yyyy_MM_dd);
     }
 
     /**
      * 字符串转日期
      *
-     * @param date  时间字符串
+     * @param date       时间字符串
      * @param dateFormat 日期格式{@link DateFormatEnum}
      * @return
      * @throws ParseException
@@ -90,61 +91,58 @@ public class D extends DateUtils {
 
     /**
      * 模糊匹配转化时间
+     *
      * @param dateString
      * @return
      */
-    public static Date fuzzyConvert(String dateString){
-        if(V.isEmpty(dateString)){
+    public static Date fuzzyConvert(String dateString) {
+        if (V.isEmpty(dateString)) {
             return null;
         }
-        if(dateString.contains("-")){
-        }
-        else if(dateString.contains("月")){
+        if (dateString.contains("-")) {
+        } else if (dateString.contains("月")) {
             dateString = dateString.replaceAll("年", "-").replaceAll("月", "-").replaceAll("日", "").replaceAll("号", "");
-        }
-        else{
+        } else {
             dateString = dateString.replaceAll("\\/", "-").replaceAll("\\.", "-");
         }
         String[] parts = dateString.split(" ");
         String[] ymd = parts[0].split("-");
-        if(ymd.length >= 3){
-            if(ymd[0].length() == 2){
+        if (ymd.length >= 3) {
+            if (ymd[0].length() == 2) {
                 ymd[0] = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)).substring(0, 2) + ymd[0];
             }
-            if(ymd[1].length() == 1){
+            if (ymd[1].length() == 1) {
                 ymd[1] = "0" + ymd[1];
             }
-            if(ymd[2].length() == 1){
+            if (ymd[2].length() == 1) {
                 ymd[2] = "0" + ymd[2];
             }
         }
         parts[0] = S.join(ymd, "-");
-        if(parts.length == 1){
+        if (parts.length == 1) {
             return D.convert2FormatDate(parts[0], DateFormatEnum.yyyy_MM_dd);
         }
         // 18:20:30:103
         String[] hmsArray = new String[3];
         String[] hms = parts[1].split(":");
-        if(hms[0].length() == 1){
+        if (hms[0].length() == 1) {
             hms[0] = "0" + hms[0];
         }
         hmsArray[0] = hms[0];
-        if(hms.length >= 2){
-            if(hms[1].length() == 1){
+        if (hms.length >= 2) {
+            if (hms[1].length() == 1) {
                 hms[1] = "0" + hms[1];
             }
             hmsArray[1] = hms[1];
-        }
-        else{
+        } else {
             hmsArray[1] = "00";
         }
-        if(hms.length >= 3){
-            if(hms[2].length() == 1){
+        if (hms.length >= 3) {
+            if (hms[2].length() == 1) {
                 hms[2] = "0" + hms[2];
             }
             hmsArray[2] = hms[2];
-        }
-        else{
+        } else {
             hmsArray[2] = "00";
         }
         parts[1] = S.join(hmsArray, ":");

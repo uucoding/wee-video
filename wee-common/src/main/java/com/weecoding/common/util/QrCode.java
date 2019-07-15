@@ -58,8 +58,8 @@ public class QrCode {
     /**
      * 创建二维码到指定路径下
      *
-     * @param filePath  路径
-     * @param content   二维码内容
+     * @param filePath 路径
+     * @param content  二维码内容
      * @return
      */
     public static void create(String filePath, String content) {

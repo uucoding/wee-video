@@ -2,7 +2,6 @@ package com.weecoding.service.mapper;
 
 import com.weecoding.common.mapper.IBaseMapper;
 import com.weecoding.service.model.BackgroundMusic;
-import com.weecoding.service.model.User;
 
 /**
  * 背景音乐mapper

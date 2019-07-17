@@ -2,6 +2,7 @@
   "pages": [
     "pages/me/me",
     "pages/login/login",
+    
     "pages/register/register"
   ],
   "window": {

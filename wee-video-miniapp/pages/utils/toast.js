@@ -17,7 +17,7 @@ let toastError = function (title) {
   wx.showToast({
     title: title,
     icon: 'error',
-    duration: 1500,
+    duration: 2000,
   })
 }
 
@@ -28,7 +28,7 @@ let toastTip = function(title) {
   wx.showToast({
     title: title,
     icon: 'none',
-    duration: 1500,
+    duration: 2000,
   })
 }
 

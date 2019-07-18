@@ -4,6 +4,7 @@ import com.weecoding.common.service.BaseServiceImpl;
 import com.weecoding.service.mapper.BackgroundMusicMapper;
 import com.weecoding.service.model.BackgroundMusic;
 import com.weecoding.service.service.BackgroundMusicService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,6 @@ import org.springframework.stereotype.Service;
  * @Date 2019-07-09  16:07
  */
 @Service
+@Slf4j
 public class BackgroundMusicServiceImpl extends BaseServiceImpl<BackgroundMusicMapper, BackgroundMusic> implements BackgroundMusicService {
 }

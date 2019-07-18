@@ -7,6 +7,7 @@ import com.weecoding.service.model.Comment;
 import com.weecoding.service.model.UserFans;
 import com.weecoding.service.service.CommentService;
 import com.weecoding.service.service.UserFansService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,5 +18,6 @@ import org.springframework.stereotype.Service;
  * @Date 2019-07-09  16:07
  */
 @Service
+@Slf4j
 public class UserFansServiceImpl extends BaseServiceImpl<UserFansMapper, UserFans> implements UserFansService {
 }

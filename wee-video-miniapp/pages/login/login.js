@@ -14,10 +14,10 @@ Page({
   submitLogin: function(e) {
     this.data.loginData = e.detail.value
     $.post({
-      url: app.api.user.login,
+      url: app.api.anonymous.login,
       data: e.detail.value,
       callback: function(data) {
-        toastSuccess("登陆成功");
+        wx.setStorageSync('token', data.data)
       }
     })
   }

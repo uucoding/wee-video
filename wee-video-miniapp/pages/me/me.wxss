@@ -64,12 +64,16 @@
 .header-right-container > view {
   background-color: rgb(53, 52, 52);
 }
+.user-other-info-container > text {
+  margin-left: 30rpx;
+}
+.user-base-info-container{
+  display: flex;
+  flex-direction: column;
+}
 .user-other-info-container {
   display: flex;
   justify-content: left
-}
-.user-other-info-container > text {
-  margin-left: 30rpx;
 }
 .upload-container {
   display: flex;

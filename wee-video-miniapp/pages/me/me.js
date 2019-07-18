@@ -11,7 +11,8 @@ Page({
     // 默认选中的tab下标
     tabActiveIndex: 0,
     user: {
-      nickname: 'weecoding',
+      username:'weecoding',
+      nickname: '张三风',
       faceImage: '../resource/images/face-avator.png',
       likeCount: 20,
       followCount: 33,

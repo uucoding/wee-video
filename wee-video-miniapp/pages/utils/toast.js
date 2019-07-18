@@ -13,16 +13,16 @@ let toastSuccess = function(title) {
 /**
  * 提示失败
  */
-let toastError = function (title) {
+let toastLoding = function (title) {
   wx.showToast({
     title: title,
-    icon: 'error',
+    icon: 'loading',
     duration: 2000,
   })
 }
 
 /**
- * 普通小提示
+ * 普通小提示/提示失败
  */
 let toastTip = function(title) {
   wx.showToast({
@@ -32,4 +32,4 @@ let toastTip = function(title) {
   })
 }
 
-module.exports = { toastSuccess, toastError, toastTip}
+module.exports = { toastSuccess, toastLoding, toastTip}

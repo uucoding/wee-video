@@ -32,7 +32,27 @@ subprojects {
     [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 
     dependencies {
-        testCompile('junit:junit:4.12')
+        compile('org.projectlombok:lombok',
+                'mysql:mysql-connector-java',
+                'org.springframework.boot:spring-boot-starter-log4j2',
+                'org.springframework.boot:spring-boot-starter-data-redis',
+                'org.springframework:spring-web',
+                'org.springframework:spring-webmvc',
+        )
+        //apache相关包
+        compile('org.apache.commons:commons-lang3',
+                'commons-io:commons-io:2.6',
+                'commons-codec:commons-codec')
+
+        compile('com.alibaba:fastjson:1.2.58',
+                'com.google.zxing:javase:3.3.3',
+                'org.apache.shiro:shiro-spring:1.4.1',
+                'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1',
+                'com.baomidou:mybatis-plus-boot-starter:3.1.2',
+        )
+        testCompile('junit:junit:4.12',
+                    'org.springframework.boot:spring-boot-starter-test'
+        )
     }
     configurations {
         //移除spring boot 默认logger依赖

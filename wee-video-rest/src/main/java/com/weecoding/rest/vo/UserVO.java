@@ -26,4 +26,19 @@ public class UserVO {
      * 昵称
      */
     private String nickname;
+
+    /**
+     * 粉丝数量
+     */
+    private Long fansCount;
+
+    /**
+     * 关注总数
+     */
+    private Long followCount;
+
+    /**
+     * 接受到的点赞/收藏的数量
+     */
+    private Long receiveLikeCount;
 }

@@ -11,11 +11,12 @@ import lombok.Data;
  * @Date 2019-07-10  22:03
  */
 @Data
-public class DefaultException extends RuntimeException {
+public class GlobalException extends RuntimeException {
 
     private IResultCode resultCode;
 
-    public DefaultException(IResultCode resultCode) {
+    public GlobalException(IResultCode resultCode) {
+        super(resultCode.getMsg());
         this.resultCode = resultCode;
     }
 }

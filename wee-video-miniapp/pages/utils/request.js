@@ -8,7 +8,7 @@
  */
 const {
   toastSuccess,
-  toastError,
+  toastLoding,
   toastTip
 } = require("./toast.js");
 
@@ -41,13 +41,13 @@ let Request = {
         //默认处理方案
         let response = data.data;
         if (response.code === 0) {
-          params.callback ? params.callback(data) : toastSuccess(response.msg);
+          params.callback ? params.callback(response) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
         }
       },
       fail: function(e) {
-        toastError('网络异常，请检查网络设置')
+        toastTip('网络异常，请稍后再试')
       },
       complete: function () {
         wx.hideLoading()
@@ -78,18 +78,20 @@ let Request = {
       method: 'POST',
       dataType: 'json',
       success: success || function(data) {
+        console.log(data)
         //默认处理方案
         let response = data.data;
         if (response.code === 0) {
-          callback ? callback(data) : toastSuccess(response.msg);
+          callback ? callback(response) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
         }
       },
       fail: function(res) {
-        toastError('网络异常，请检查网络设置')
+        toastTip('网络异常，请稍后再试')
       },
       complete: function() {
+        console.log('=========')
         wx.hideLoading()
       }
     })

@@ -11,6 +11,7 @@
         </view>
         <view class='user-base-info-container'>
           <text class='theme-white-color fsw20'>{{user.nickname}}</text>
+          <text class='theme-white-color fs15'>mini号:{{user.nickname}}</text>
         </view>
       </view>
       <view class='header-right-container'>

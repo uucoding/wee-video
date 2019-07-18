@@ -14,6 +14,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorEnum implements IResultCode {
     ERROR(4000, "操作失败"),
+    LOGIN_VISIT(4003, "登陆后访问"),
     ;
 
     /**

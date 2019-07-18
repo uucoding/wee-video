@@ -1,19 +1,4 @@
 dependencies {
-    compile('org.projectlombok:lombok',
-            'org.springframework.boot:spring-boot-starter-log4j2',
-            'org.springframework:spring-web',
-            // 引入mybatis-plus
-            'com.baomidou:mybatis-plus-boot-starter:3.1.2')
-    //apache相关包
-    compile('org.apache.commons:commons-lang3',
-            'commons-io:commons-io:2.6',
-            'commons-codec:commons-codec')
-
-    compile('com.alibaba:fastjson:1.2.58',
-            'com.google.zxing:javase:3.3.3',
-            'org.apache.shiro:shiro-spring:1.4.1',
-
-    )
 
 }
 

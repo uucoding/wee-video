@@ -1,0 +1,15 @@
+<!--components/tabbar.wxml-->
+<view class='tabbar-container'>
+  <block wx:for="{{tabbars}}" wx:for-item="tabbar" wx:key="index">
+    <view class="tabbar-item">
+      <navigator wx:if="{{tabbar.page}}" open-type="redirect" url="{{tabbar.page}}" data-index='{{index}}' bindtap='toggle' hover-class="none">
+        <block wx:if="{{tabbar.icons}}">
+          <view class='tabbar-content'>
+            <image class='icon' src='{{index== tabActiveIndex ? tabbar.icons[1] :  tabbar.icons[0]}}'></image>
+            <text class="{{index== tabActiveIndex ? 'active' :''}}">{{tabbar.text}}</text>
+          </view>
+        </block>
+      </navigator>
+    </view>
+  </block>
+</view>

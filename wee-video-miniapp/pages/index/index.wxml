@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  <view style='color:white'>shouye</view>
+  <wee-tabbar tabbars='{{tabbars}}'  tabActiveIndex='0'></wee-tabbar>
+</view>

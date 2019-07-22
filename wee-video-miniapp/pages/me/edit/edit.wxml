@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <view>个人资料页面</view>
+</view>

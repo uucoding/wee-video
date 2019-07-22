@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "wee-tabbar": "/components/tabbar/tabbar"
+  }
+}

@@ -110,12 +110,19 @@
   border-bottom: 4px solid #87ceeb;
   font-weight: bold;
 }
+/* .tab-content {
+  text-align: center;
+} */
 .tab-content > view {
   display: none;
   color: white;
 }
 .tab-content > .active {
   display: block;
+}
+.tab-content > text {
+  display: none;
+  color: #eee;
 }
 .footer-container {
   display: flex;

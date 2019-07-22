@@ -5,19 +5,19 @@
     <form class='register-form' bindsubmit='submitRegister'>
     <!-- 用户名 -->
       <view class='input-container'>
-        <image class='icon mr10 ml10' src='../resource/images/username.png'></image>
+        <image class='icon mr10 ml10' src='/resource/images/username.png'></image>
         <input class='username-input base-input fs15 lh45' name='username' placeholder='用户名'></input>
       </view>
       <view class='line mb30'></view>
       <!-- 新密码 -->
       <view class='input-container'>
-        <image class='icon mr10 ml10' src='../resource/images/password.png'></image>
+        <image class='icon mr10 ml10' src='/resource/images/password.png'></image>
         <input class='password-input base-input fs15 lh45' name='password' password='true' placeholder='新密码'></input>
       </view>
       <view class='line mb30'></view>
       <!-- 确认密码 -->
       <view class='input-container'>
-        <image class='icon mr10 ml10' src='../resource/images/password.png'></image>
+        <image class='icon mr10 ml10' src='/resource/images/password.png'></image>
         <input class='password-input base-input fs15 lh45' name='repassword' password='true' placeholder='确认密码'></input>
       </view>
       <view class='line mb30'></view>

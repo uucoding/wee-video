@@ -6,8 +6,8 @@
     <view class='header-container'>
       <view class='header-left-container'>
         <view class='avator-container'>
-          <image class='avator' src='{{user.faceImage}}'></image>
-          <view class='edit'>编辑</view>
+          <image class='avator' src='{{user.faceImage}}' bindtap='editFace'></image>
+          <!-- <view class='edit'>编辑</view> -->
         </view>
         <view class='user-base-info-container'>
           <text class='theme-white-color fsw20'>{{user.nickname}}</text>
@@ -15,9 +15,10 @@
         </view>
       </view>
       <view class='header-right-container'>
-        <view class='theme-white-color'>编辑资料</view>
+        <view class='theme-white-color' bindtap='editMe'>编辑资料</view>
       </view>
     </view>
+    <!-- 关注信息 -->
     <view class='user-other-info-container'>
       <text class='theme-white-color'>{{user.likeCount}} 获赞</text>
       <text class='theme-white-color'>{{user.followCount}} 关注</text>
@@ -26,7 +27,7 @@
     <!-- 添加视频 -->
     <view class='upload-container'>
       <view class='upload-btn'>
-        <image class='icon' src='../resource/images/camera.png'></image>
+        <image class='icon' src='/resource/images/camera.png'></image>
         <text>添加视频</text>
       </view>
 
@@ -37,7 +38,12 @@
     </view>
   </view>
   <view class="tab-content">
-    <view class='{{0 == tabActiveIndex? "active" : ""}}' data-index='0'>暂无内容1</view>
-    <view class='{{1 == tabActiveIndex? "active" : ""}}' data-index='1'>暂无内容2</view>
+    <!--  自己上传的视频 -->
+    <view wx:if='{{selfVideoList.length > 0}}' class='{{0 == tabActiveIndex? "active" : ""}}' data-index='0'>暂无内容1</view>
+    <text wx:else class='{{0 == tabActiveIndex? "active" : ""}}' data-index='0'>暂无内容</text>
+    <!-- 喜欢的视频 -->
+    <view wx:if='{{likeVideoList.length > 0}}' class='{{1 == tabActiveIndex? "active" : ""}}' data-index='1'>暂无内容2</view>
+    <text wx:else class='{{1 == tabActiveIndex? "active" : ""}}' data-index='1'>暂无内容</text>
   </view>
+  <wee-tabbar tabbars='{{tabbars}}' tabActiveIndex='1'></wee-tabbar>
 </view>

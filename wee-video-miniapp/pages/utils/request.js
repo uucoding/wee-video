@@ -44,6 +44,12 @@ let Request = {
           params.callback ? params.callback(response) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
+          //登陆后访问
+          if (response.code === 4003) {
+            wx.redirectTo({
+              url: '/pages/login/login'
+            })
+          }
         }
       },
       fail: function(e) {
@@ -85,13 +91,18 @@ let Request = {
           callback ? callback(response) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
+          //登陆后访问
+          if (response.code === 4003) {
+            wx.redirectTo({
+              url: '/pages/login/login'
+            })
+          }
         }
       },
       fail: function(res) {
         toastTip('网络异常，请稍后再试')
       },
       complete: function() {
-        console.log('=========')
         wx.hideLoading()
       }
     })

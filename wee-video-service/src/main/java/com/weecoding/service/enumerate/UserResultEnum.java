@@ -19,8 +19,7 @@ public enum UserResultEnum implements IResultCode {
     DB_EXIST_USER(103, "用户已存在!"),
     DB_NOT_EXIST_USER(105, "用户不存在!"),
     PASSWORD_ERROR(106, "密码错误!"),
-
-    ;
+    REDIS_CACHE_NOT_EXIST(107, "用户已经退出!");
 
     private Integer code;
 

@@ -2,17 +2,15 @@ package com.weecoding.common.wrapper;
 
 import com.weecoding.common.constant.BaseConstants;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /**
- * 集合帮助类
+ * 数据帮助类
  * @author : wee
  * @version : v1.0
  * @Date 2019-07-18  00:20
  */
-public class GlobalWrappers {
+public class DataWrappers {
 
     /**
      * 创建Map
@@ -26,7 +24,7 @@ public class GlobalWrappers {
         if (size !=  null && size.length > 0) {
             value = size[0];
         }
-        return new MapWrapper<>(new HashMap<K, V>(value));
+        return new MapWrapper<K, V>(new HashMap<K, V>(value));
     }
 
     /**
@@ -34,17 +32,18 @@ public class GlobalWrappers {
      * @param <T>
      * @return
      */
-    public static <T >CollectionWrapper<T> createArrayList() {
-        return new CollectionWrapper<T>(new ArrayList<>());
+    public static <T>CollectionWrapper<T, List<T>> createArrayList() {
+        return new CollectionWrapper<T, List<T>>(new ArrayList<T>());
     }
 
     /**
      * 创建HashSet集合
      * @param <T>
-     * @return
+     * @return {@link CollectionWrapper<T, Set<T>>}
      */
-    public static <T>CollectionWrapper<T> createHashSet() {
-        return new CollectionWrapper<T>(new HashSet<>());
+    public static <T>CollectionWrapper<T, Set<T>> createHashSet() {
+        return new CollectionWrapper<T, Set<T>>(new HashSet<T>());
     }
+
 
 }

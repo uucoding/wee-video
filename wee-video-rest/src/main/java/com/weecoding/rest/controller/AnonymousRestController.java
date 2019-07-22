@@ -1,10 +1,13 @@
 package com.weecoding.rest.controller;
 
+import com.weecoding.common.controller.BaseController;
 import com.weecoding.common.util.response.JsonResult;
 import com.weecoding.service.form.UserForm;
 import com.weecoding.service.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 匿名请求api
@@ -14,15 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/v1/anonymous")
-public class AnonymousRestController {
-
-    @Autowired
-    private UserService userService;
-
-    @GetMapping("/get")
-    public JsonResult get() {
-        return JsonResult.ok();
-    }
+public class AnonymousRestController extends BaseController<UserService> {
 
     /***
      * 注册用户
@@ -32,7 +27,7 @@ public class AnonymousRestController {
     @PostMapping("/register")
     public JsonResult register(@RequestBody UserForm entity) throws Exception {
         //注册用户
-        userService.register(entity);
+        getBaseService().register(entity);
         //注册完毕，直接登陆
         return login(entity);
     }
@@ -45,7 +40,7 @@ public class AnonymousRestController {
      */
     @PostMapping("/login")
     public JsonResult login(@RequestBody UserForm entity) throws Exception {
-        String token = userService.login(entity);
+        String token = getBaseService().login(entity);
         return JsonResult.ok(token);
     }
 }

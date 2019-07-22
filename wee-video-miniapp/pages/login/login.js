@@ -10,6 +10,13 @@ Page({
       password: ''
     }
   }, 
+  //卸载页面的时候，返回首页
+  onUnload: function() {
+    //返回到首页
+    wx.redirectTo({
+      url: '/pages/index/index',
+    })
+  },
   //登陆
   submitLogin: function(e) {
     this.data.loginData = e.detail.value
@@ -17,7 +24,12 @@ Page({
       url: app.api.anonymous.login,
       data: e.detail.value,
       callback: function(data) {
-        wx.setStorageSync('token', data.data)
+        //设置token
+        wx.setStorageSync('token', data.data);
+        //跳转至首页
+        wx.redirectTo({
+          url: '/pages/me/me'
+        })
       }
     })
   }

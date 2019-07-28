@@ -9,8 +9,8 @@ Component({
       value: []
     },
     tabActiveIndex: {
-      type: Number,
-      value: 0
+      type:Number,
+      value:0
     }
   },
 

@@ -1,0 +1,36 @@
+/* components/tableView.wxss */
+
+.table-view-container {
+  width: 100%;
+  display: flex;
+  font-size: 15px;
+  color: white;
+  flex-direction: column;
+  justify-content: space-around;
+  border-top: solid 1px #222;
+}
+
+.table-view-cell {
+  display: flex;
+  width: 100%;
+  padding: 5px 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+}
+.table-view-cell .left {
+  display: flex;
+  margin-left: 10px;
+}
+.table-view-cell .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10px;
+  color: grey;
+}
+.icon {
+  width: 18px;
+  height: 18px;
+}

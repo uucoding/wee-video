@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "wee-table-view": "/components/tableview/tableview",
+    "wee-table-input": "/components/tableinput/tableinput"
+  }
 }

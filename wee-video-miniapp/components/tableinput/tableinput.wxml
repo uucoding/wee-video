@@ -1,0 +1,10 @@
+<!--components/tableinput.wxml-->
+<view class='table-input-container'>
+  <block wx:for="{{tableInputList}}" wx:key="index" wx:for-item="tableInput">
+    <view class='table-input-cell'>
+      <label class='label'>{{tableInput.label}}</label>
+      <input class='base-input' data-input-index='{{index}}' data-input-name="{{tableInput.name}}" type='text' password='{{tableInput.isPassword}}' value='{{tableInput.value}}' confirm-type='{{tableInput.confirmType}}' bindconfirm='confirm'
+        focus='{{focusIndex == index ? true : false}}'></input>
+    </view>
+  </block>
+</view>

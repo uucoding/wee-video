@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--edit.wxml-->
 <view class="container">
-  <view>个人资料页面</view>
+  <wee-table-input tableInputList='{{tableInputList}}' bind:submit="modifyUser"></wee-table-input>
 </view>

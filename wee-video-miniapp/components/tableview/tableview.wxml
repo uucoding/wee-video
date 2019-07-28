@@ -1,0 +1,17 @@
+<!--components/tableView.wxml-->
+<view class='table-view-container'>
+  <block wx:for="{{tableViewList}}" wx:key="index" wx:for-item="tableView">
+    <navigator class='table-view-cell' open-type='redirect' url='{{tableView.page}}'>
+      <!-- 左侧 -->
+      <view class='left'>
+        <label>{{tableView.label}}</label>
+      </view>
+      <!-- 右侧 -->
+      <view class='right'>
+        <text class='content'>{{tableView.content}}</text>
+        <image class='icon' src='/resource/images/right.png'></image>
+      </view>
+    </navigator>
+  </block>
+
+</view>

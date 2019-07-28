@@ -35,7 +35,7 @@ public class GlobalConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(globalInterceptor())
-                .addPathPatterns("/**")
+                .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/v1/anonymous/**");
     }
 

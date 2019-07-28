@@ -31,6 +31,7 @@ public class UserRestController extends BaseController<UserService> {
 
     /**
      * 退出登陆， 依据token删除
+     *
      * @param token
      * @return
      */

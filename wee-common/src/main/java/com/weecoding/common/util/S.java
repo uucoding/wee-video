@@ -5,6 +5,7 @@ import com.weecoding.common.enumerate.SecurityCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -115,5 +116,40 @@ public class S extends StringUtils {
             result.append(originData.charAt(index));
         }
         return result.toString();
+    }
+
+    /**
+     * 去除重复的分隔符
+     * 如：/a///b//c///d/f///
+     * 如果{@code needLastSeparator} == false
+     * => /a/b/c/d/f/
+     * 如果{@code needLastSeparator} == true
+     * => /a/b/c/d/f
+     *
+     * @param array
+     * @param separator
+     * @param needLastSeparator 默认为true
+     * @return
+     */
+    public static String duplicateJoin(Object[] array, String separator, boolean... needLastSeparator) {
+        boolean flag = V.notEmpty(needLastSeparator) && needLastSeparator.length > 0 ? needLastSeparator[0] : true;
+        String duplicateJoin = S.join(array, separator).replaceAll(S.join("\\", separator, "{2,}"), "\\" + separator);
+        if (flag && duplicateJoin.lastIndexOf(separator) == duplicateJoin.length() - 1) {
+            return duplicateJoin.substring(0, duplicateJoin.length() - 1);
+        }
+        return duplicateJoin;
+    }
+
+
+    /**
+     * {@link S#duplicateJoin(Object[], String, boolean...)}示例代码
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        String join = S.duplicateJoin(new String[]{"1", "", null, "2", "", "", "d", "f", "", ""}, "，");
+        System.out.println(join);
+        String join2 = S.duplicateJoin(new String[]{"1", "", null, "2", "", "", "d", "f", "", ""}, "/", false);
+        System.out.println(join2);
     }
 }

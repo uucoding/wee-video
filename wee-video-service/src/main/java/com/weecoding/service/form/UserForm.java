@@ -16,6 +16,11 @@ import lombok.experimental.SuperBuilder;
 public class UserForm extends User {
 
     /**
+     * 旧密码
+     */
+    private String oldPassword;
+
+    /**
      * 重复密码
      */
     private String rePassword;

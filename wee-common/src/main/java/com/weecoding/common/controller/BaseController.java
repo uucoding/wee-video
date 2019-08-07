@@ -1,6 +1,7 @@
 package com.weecoding.common.controller;
 
 import com.weecoding.common.service.IBaseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @version : v1.0
  * @Date 2019-07-12  00:35
  */
+@Slf4j
 public class BaseController<T extends IBaseService> {
 
     @Autowired

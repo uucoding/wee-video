@@ -15,7 +15,8 @@ Page({
       data: e.detail.value,
       callback: function (data) {
         //设置登陆成功的token
-        wx.setStorageSync('token', data.data)
+        wx.setStorageSync('token', data.token)
+        app.userInfo = data.user
         //跳转至首页
         wx.redirectTo({
           url: '/pages/index/index'

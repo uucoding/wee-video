@@ -20,3 +20,9 @@ logging:
       mybatis: debug
     com:
       weecoding: debug
+#设置全局配置
+weecoding:
+  global:
+    enable-token-filter: true
+    file:
+      file-main-directory: /wee-upload

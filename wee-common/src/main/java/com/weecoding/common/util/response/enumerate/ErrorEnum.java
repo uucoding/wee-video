@@ -1,4 +1,4 @@
-package com.weecoding.common.enumerate;
+package com.weecoding.common.util.response.enumerate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

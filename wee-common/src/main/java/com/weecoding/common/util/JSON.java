@@ -2,7 +2,7 @@ package com.weecoding.common.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.weecoding.common.model.Bean;
+import com.weecoding.common.model.Entity;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class JSON {
      * @param <T>
      * @return
      */
-    public static <T extends Bean> T toBean(String text, Class<T> beanClass) {
+    public static <T extends Entity> T toBean(String text, Class<T> beanClass) {
         return JSONObject.parseObject(text, beanClass);
     }
 
@@ -45,7 +45,7 @@ public class JSON {
      * @param <T>  extends BaseBean
      * @return
      */
-    public static <T extends Bean> List<T> toBeanList(String text, TypeReference<List<T>> type) {
+    public static <T extends Entity> List<T> toBeanList(String text, TypeReference<List<T>> type) {
         return JSONObject.parseObject(text, type);
     }
 

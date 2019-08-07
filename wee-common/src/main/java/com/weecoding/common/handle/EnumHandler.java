@@ -1,7 +1,7 @@
 package com.weecoding.common.handle;
 
-import com.weecoding.common.enumerate.ErrorEnum;
-import com.weecoding.common.enumerate.IResultCode;
+import com.weecoding.common.util.response.enumerate.ErrorEnum;
+import com.weecoding.common.util.response.enumerate.IResultCode;
 
 import java.util.Arrays;
 

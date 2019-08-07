@@ -7,5 +7,5 @@ Page({
   data: {
     //设置tabbar组件的值
     tabbars: app.tabbars,
-  }
+  },
 })

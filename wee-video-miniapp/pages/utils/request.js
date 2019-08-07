@@ -41,7 +41,7 @@ let Request = {
         //默认处理方案
         let response = data.data;
         if (response.code === 0) {
-          params.callback ? params.callback(response) : toastSuccess(response.msg);
+          params.callback ? params.callback(response.data) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
           //登陆后访问
@@ -84,11 +84,10 @@ let Request = {
       method: 'POST',
       dataType: 'json',
       success: success || function(data) {
-        console.log(data)
         //默认处理方案
         let response = data.data;
         if (response.code === 0) {
-          callback ? callback(response) : toastSuccess(response.msg);
+          callback ? callback(response.data) : toastSuccess(response.msg);
         } else {
           toastTip(response.msg)
           //登陆后访问

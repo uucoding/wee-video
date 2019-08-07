@@ -4,25 +4,28 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.weecoding.common.constant.RedisConstants;
 import com.weecoding.common.enumerate.SecurityCodeEnum;
-import com.weecoding.common.util.JSON;
-import com.weecoding.common.util.S;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import com.weecoding.common.enumerate.ErrorEnum;
 import com.weecoding.common.exception.GlobalException;
 import com.weecoding.common.service.BaseServiceImpl;
+import com.weecoding.common.util.JSON;
+import com.weecoding.common.util.S;
 import com.weecoding.common.util.SecretUtil;
 import com.weecoding.common.util.V;
 import com.weecoding.common.util.bean.BeanUtils;
+import com.weecoding.common.util.response.enumerate.ErrorEnum;
+import com.weecoding.common.wrapper.DataWrappers;
 import com.weecoding.service.enumerate.UserResultEnum;
 import com.weecoding.service.form.UserForm;
 import com.weecoding.service.mapper.UserMapper;
 import com.weecoding.service.model.User;
 import com.weecoding.service.service.UserService;
+import com.weecoding.service.vo.UserVO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
@@ -69,7 +72,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     }
 
     @Override
-    public String login(UserForm userForm) throws Exception {
+    public Map<String, Object> login(UserForm userForm) throws Exception {
         //1、校验入参
         if (V.isEmpty(userForm.getUsername()) || V.isEmpty(userForm.getPassword())) {
             throw new GlobalException(UserResultEnum.USER_PARAMS_IS_EMPTY);
@@ -93,8 +96,40 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
                 JSON.object2jsonString(dbUser),
                 RedisConstants.EXPIRED_TIME,
                 TimeUnit.SECONDS);
-        return token;
+
+        return DataWrappers.<String, Object>createHashMap()
+                .put("token", token)
+                .put("user", BeanUtils.copyBean(dbUser, UserVO.class))
+                .build();
     }
 
+    @Override
+    public User changePassword(UserForm userForm) throws Exception {
+        //1、检查参数是否完整
+        if (V.isEmpty(userForm.getOldPassword()) || V.isEmpty(userForm.getPassword()) || V.isEmpty(userForm.getRePassword())) {
+            throw new GlobalException(UserResultEnum.CHANGE_PASSWORD_PARAMS_IS_EMPTY);
+        }
+        //2、检查新密码和重复密码是否相同
+        if (!V.equals(userForm.getPassword(), userForm.getRePassword())) {
+            throw new GlobalException(UserResultEnum.PASSWORD_ERROR);
+        }
+        //3、检查老密码是否正确
+        LambdaQueryWrapper<User> lambdaQueryWrapper = Wrappers.<User>lambdaQuery()
+                .eq(User::getId, userForm.getId())
+                .eq(User::getPassword, SecretUtil.encryptMD5(userForm.getOldPassword()));
+        User dbUser = super.getOne(lambdaQueryWrapper);
+        if (V.isEmpty(dbUser)) {
+            throw new GlobalException(UserResultEnum.CHANGE_PASSWORD_OLD_IS_ERROR);
+        }
+        boolean success = super.updateEntity(userForm);
+        if (!success) {
+            throw new GlobalException(ErrorEnum.ERROR);
+        }
+        return null;
+    }
 
+    @Override
+    protected void setFilePath(String uploadPath, User entity) {
+        entity.setFaceImage(uploadPath);
+    }
 }

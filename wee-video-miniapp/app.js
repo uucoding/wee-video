@@ -2,6 +2,8 @@
 let domain = "http://localhost:8080";
 //app.js
 App({
+  //用户基本信息
+  userInfo: {},
   tabbars: [
     {
       icons: ['/resource/images/bar_index.png', '/resource/images/bar_index_on.png'],
@@ -14,6 +16,7 @@ App({
       page: "/pages/me/me"
     }
   ],
+  domain: domain,
   //api 配置
   api: {
     // 匿名访问
@@ -23,6 +26,10 @@ App({
     },
     // 用户相关
     user: {
+      update: `${domain}/api/v1/user/update`,
+      uploadFaceImage: `${domain}/api/v1/user/uploadFaceImage`,
+      changePassword: `${domain}/api/v1/user/changePassword`,
+      logout: `${domain}/api/v1/user/logout`,
     }
   },
   //每当打开小程序，都需要向后台发送一个请求用以监听是否登陆

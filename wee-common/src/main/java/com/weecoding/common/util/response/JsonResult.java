@@ -1,7 +1,7 @@
 package com.weecoding.common.util.response;
 
-import com.weecoding.common.enumerate.IResultCode;
-import com.weecoding.common.enumerate.JsonStatusEnum;
+import com.weecoding.common.util.response.enumerate.IResultCode;
+import com.weecoding.common.util.response.enumerate.JsonStatusEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

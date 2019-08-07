@@ -66,13 +66,16 @@ public class QrCode {
         /*生成二维码*/
         try {
             BitMatrix bitMatrix = initBitMatrix(content);
-            Path path = new File(filePath).toPath();
-            MatrixToImageWriter.writeToPath(bitMatrix, BaseConstants.PNG, path);
+            File file = new File(filePath);
+            //目录不存在的时候创建目录
+            if (!file.getParentFile().exists()) {
+                file.mkdirs();
+            }
+            MatrixToImageWriter.writeToPath(bitMatrix, BaseConstants.PNG, file.toPath());
         } catch (Exception e) {
             log.error("【生成二维码】<==异常：", e);
         }
     }
-
 
     /**
      * 创建二维码的BufferedImage对象

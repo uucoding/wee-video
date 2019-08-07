@@ -1,4 +1,4 @@
-package com.weecoding.rest.vo;
+package com.weecoding.service.vo;
 
 import lombok.Data;
 
@@ -46,9 +46,4 @@ public class UserVO {
      * 接受到的点赞/收藏的数量
      */
     private Long receiveLikeCount;
-
-    /**
-     * token
-     */
-    private String token;
 }

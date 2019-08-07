@@ -1,6 +1,6 @@
 package com.weecoding.common.exception;
 
-import com.weecoding.common.enumerate.IResultCode;
+import com.weecoding.common.util.response.enumerate.IResultCode;
 import lombok.Data;
 
 /**
@@ -18,5 +18,9 @@ public class GlobalException extends RuntimeException {
     public GlobalException(IResultCode resultCode) {
         super(resultCode.getMsg());
         this.resultCode = resultCode;
+    }
+
+    public GlobalException(String msg) {
+        super(msg);
     }
 }

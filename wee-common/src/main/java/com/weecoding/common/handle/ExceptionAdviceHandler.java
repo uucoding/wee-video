@@ -1,6 +1,7 @@
 package com.weecoding.common.handle;
 
 import com.weecoding.common.exception.GlobalException;
+import com.weecoding.common.util.V;
 import com.weecoding.common.util.response.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,7 +33,7 @@ public class ExceptionAdviceHandler {
     }
 
     /**
-     * 捕获抛出的默认异常
+     * 捕获抛出的全局异常
      *
      * @param de
      * @return
@@ -40,7 +41,8 @@ public class ExceptionAdviceHandler {
     @ResponseBody
     @ExceptionHandler(GlobalException.class)
     public JsonResult adviceDefaultException(GlobalException de) {
-        log.error("【exception】<==异常：错误信息：{}", de.getResultCode().getMsg());
-        return JsonResult.iResultCode(de.getResultCode());
+        log.error("【exception】<==异常：错误信息：{}", de.getMessage());
+        return V.notEmpty(de.getResultCode()) ? JsonResult.iResultCode(de.getResultCode())
+                                              : JsonResult.errorMsg(de.getMessage());
     }
 }

@@ -35,14 +35,13 @@ public class AnonymousRestController extends BaseController<UserService> {
     }
 
     /**
-     * 登陆用户
+     * 登陆用户: 返回用户token 以及用户信息
      *
      * @param entity
      * @return
      */
     @PostMapping("/login")
     public JsonResult login(@RequestBody UserForm entity) throws Exception {
-        String token = getBaseService().login(entity);
-        return JsonResult.ok(token);
+        return JsonResult.ok(getBaseService().login(entity));
     }
 }

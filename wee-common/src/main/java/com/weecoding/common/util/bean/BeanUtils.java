@@ -114,6 +114,9 @@ public class BeanUtils {
                     targetName = field.getName();
                 }
                 //初始化
+                if ("serialVersionUID".equals(field.getName())) {
+                    continue;
+                }
                 propertyDescriptor = new PropertyDescriptor(field.getName(), beanClass);
                 //获取当前属性的get方法
                 Method method = propertyDescriptor.getReadMethod();

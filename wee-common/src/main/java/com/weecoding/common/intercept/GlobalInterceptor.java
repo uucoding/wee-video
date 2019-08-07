@@ -1,9 +1,10 @@
 package com.weecoding.common.intercept;
 
 import com.weecoding.common.constant.RedisConstants;
-import com.weecoding.common.enumerate.ErrorEnum;
 import com.weecoding.common.exception.GlobalException;
+import com.weecoding.common.properties.GlobalProperties;
 import com.weecoding.common.util.V;
+import com.weecoding.common.util.response.enumerate.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -26,6 +27,9 @@ public class GlobalInterceptor implements HandlerInterceptor {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    private GlobalProperties globalProperties;
+
     /**
      * 拦截所有非匿名访问的url
      *
@@ -44,6 +48,10 @@ public class GlobalInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //没全局认证，不做拦截处理
+        if (!globalProperties.isEnableTokenFilter()) {
+            return true;
+        }
         log.debug("【拦截】<== url: {}，", request.getRequestURI());
         //1、校验是否认证
         String token = request.getHeader(RedisConstants.TOKEN);

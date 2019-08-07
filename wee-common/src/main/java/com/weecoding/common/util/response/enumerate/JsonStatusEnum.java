@@ -1,4 +1,4 @@
-package com.weecoding.common.enumerate;
+package com.weecoding.common.util.response.enumerate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum JsonStatusEnum {
+public enum JsonStatusEnum implements IResultCode  {
     ok(0, "操作成功！"),
     /**
      * 自定义错误内容

@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.weecoding.common.model.Bean;
+import com.weecoding.common.model.Entity;
 import lombok.Data;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Date;
  * @Date 2019-07-04  21:52
  */
 @Data
-public class BaseEntity extends Bean {
+public class BaseEntity extends Entity {
     private static final long serialVersionUID = 4318026767280545749L;
 
     /**
@@ -32,4 +33,9 @@ public class BaseEntity extends Bean {
     @TableLogic
     private boolean deleted;
 
+
+    @Override
+    public Object getKey() {
+        return this.id;
+    }
 }

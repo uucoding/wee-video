@@ -6,11 +6,11 @@
     <view class='header-container'>
       <view class='header-left-container'>
         <view class='avator-container'>
-          <image class='avator' src='{{user.faceImage}}' bindtap='editFace'></image>
+          <image class='avator' src='{{faceImage}}' bindtap='editFace'></image>
           <!-- <view class='edit'>编辑</view> -->
         </view>
         <view class='user-base-info-container'>
-          <text class='theme-white-color fsw20'>{{user.nickname}}</text>
+          <text class='theme-white-color fsw20'>{{user.username}}</text>
           <text class='theme-white-color fs15'>mini号:{{user.nickname}}</text>
         </view>
       </view>
@@ -20,7 +20,7 @@
     </view>
     <!-- 关注信息 -->
     <view class='user-other-info-container'>
-      <text class='theme-white-color'>{{user.likeCount}} 获赞</text>
+      <text class='theme-white-color'>{{user.receiveLikeCount}} 获赞</text>
       <text class='theme-white-color'>{{user.followCount}} 关注</text>
       <text class='theme-white-color'>{{user.fansCount}} 粉丝</text>
     </view>

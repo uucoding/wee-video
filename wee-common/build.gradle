@@ -1,5 +1,7 @@
 dependencies {
-
+    compile('org.apache.tomcat.embed:tomcat-embed-core')
+    //配置文件 提示功能
+    compile('org.springframework.boot:spring-boot-configuration-processor')
 }
 
 //打包至本地仓库

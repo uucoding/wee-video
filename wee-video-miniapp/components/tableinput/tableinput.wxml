@@ -4,7 +4,7 @@
     <view class='table-input-cell'>
       <label class='label'>{{tableInput.label}}</label>
       <input class='base-input' data-input-index='{{index}}' data-input-name="{{tableInput.name}}" type='text' password='{{tableInput.isPassword}}' value='{{tableInput.value}}' confirm-type='{{tableInput.confirmType}}' bindconfirm='confirm'
-        focus='{{focusIndex == index ? true : false}}'></input>
+        focus='{{focusIndex == index ? true : false}}' confirm-hold='true'></input>
     </view>
   </block>
 </view>

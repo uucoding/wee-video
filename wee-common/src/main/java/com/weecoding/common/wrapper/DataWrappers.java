@@ -37,6 +37,15 @@ public class DataWrappers {
     }
 
     /**
+     * 创建ArrayList集合
+     * @param <T>
+     * @return
+     */
+    public static <T>CollectionWrapper<T, List<T>> createArrayList(List<T> defaultList) {
+        return new CollectionWrapper<T, List<T>>(new ArrayList<T>(defaultList));
+    }
+
+    /**
      * 创建HashSet集合
      * @param <T>
      * @return {@link CollectionWrapper<T, Set<T>>}

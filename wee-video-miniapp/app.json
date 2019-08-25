@@ -1,9 +1,13 @@
 {
   "pages": [
+    "pages/uploadVideo/uploadVideo",
+        "pages/login/login",
+        
     
-    "pages/login/login",
-    "pages/index/index",
     "pages/me/me",
+  
+    "pages/index/index",
+    
     "pages/me/edit/edit",
     
     "pages/register/register"

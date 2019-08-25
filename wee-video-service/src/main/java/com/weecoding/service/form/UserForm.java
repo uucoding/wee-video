@@ -25,4 +25,6 @@ public class UserForm extends User {
      */
     private String rePassword;
 
+    private String password;
+
 }

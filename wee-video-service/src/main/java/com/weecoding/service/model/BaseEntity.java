@@ -32,10 +32,4 @@ public class BaseEntity extends Entity {
 
     @TableLogic
     private boolean deleted;
-
-
-    @Override
-    public Object getKey() {
-        return this.id;
-    }
 }

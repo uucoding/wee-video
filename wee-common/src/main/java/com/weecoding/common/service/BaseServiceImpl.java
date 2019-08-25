@@ -1,6 +1,7 @@
 package com.weecoding.common.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.weecoding.common.enumerate.FileDirectoryEnum;
 import com.weecoding.common.exception.GlobalException;
 import com.weecoding.common.form.MultipartFileWrapper;
 import com.weecoding.common.mapper.IBaseMapper;
@@ -40,7 +41,7 @@ public class BaseServiceImpl<M extends IBaseMapper<T>, T extends Entity> extends
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public <F extends MultipartFile> void uploadSingleFileWithEntity(MultipartFileWrapper<F> wrapper, T entity) throws Exception {
+    public <F extends MultipartFile> String uploadSingleFile(MultipartFileWrapper<F> wrapper, String key) throws Exception {
         F fileStream = wrapper.getFile();
         if (V.isEmpty(fileStream)) {
             throw new GlobalException(FileEnum.PARAM_FILE_NOT_EXIST);
@@ -48,25 +49,28 @@ public class BaseServiceImpl<M extends IBaseMapper<T>, T extends Entity> extends
         FileOutputStream fileOutputStream = null;
         InputStream inputStream = null;
         try {
-            //获取统一配置的配置的文件路径
+            //1、获取统一配置的配置的文件路径
             String absoluteStoragePathPrefix = globalProperties.getFile().getAbsoluteStoragePathPrefix();
-            //获取文件名
+            //2、获取文件名
             String fileName = fileStream.getOriginalFilename();
-            //构建最终的文件路径
-            String fullPath = S.duplicateJoin(new String[]{absoluteStoragePathPrefix, entity.getKey().toString(), fileName}, File.separator);
-            String dbStoragePath = S.join(new String[]{entity.getKey().toString(), fileName}, File.separator);
+            //3、获取存储的类型
+            String dir = FileDirectoryEnum.DIR.choose(fileName);
+            //4、数据库存储的文件路径
+            String dbStoragePath = "/" + S.join(new String[]{dir, key, fileName}, File.separator);
+
+            //5、构建文件全路径
+            String fullPath = S.duplicateJoin(new String[]{absoluteStoragePathPrefix, dbStoragePath}, File.separator);
+
             //如果文件夹不存在，创建文件夹
             File file = new File(fullPath);
             if (file.getParentFile() != null || !file.getParentFile().isDirectory()) {
                 file.getParentFile().mkdirs();
             }
+            //输出到文件流
             fileOutputStream = new FileOutputStream(file);
             inputStream = fileStream.getInputStream();
             IOUtils.copy(inputStream, fileOutputStream);
-
-            setFilePath(dbStoragePath, entity);
-            //保存文件到数据库
-            baseMapper.updateById(entity);
+            return dbStoragePath;
         } catch (Exception e) {
             log.error("【上传文件】<== 异常：", e);
             throw new GlobalException(ErrorEnum.ERROR);
@@ -79,15 +83,5 @@ public class BaseServiceImpl<M extends IBaseMapper<T>, T extends Entity> extends
                 inputStream.close();
             }
         }
-    }
-
-    /**
-     * 上传后得到路径，设置到entity中
-     *
-     * @param uploadPath
-     * @param entity
-     */
-    protected void setFilePath(String uploadPath, T entity) {
-        log.warn("【上传文件】<==后续操作，由子类覆盖实现");
     }
 }

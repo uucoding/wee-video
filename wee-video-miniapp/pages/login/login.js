@@ -24,10 +24,9 @@ Page({
       url: app.api.anonymous.login,
       data: e.detail.value,
       callback: function(data) {
-        //设置token
+        //设置token和用户信息
         wx.setStorageSync('token', data.token);
-        app.userInfo = data.user;
-        
+        wx.setStorageSync('user', data.user);
         //跳转至首页
         wx.redirectTo({
           url: '/pages/me/me'

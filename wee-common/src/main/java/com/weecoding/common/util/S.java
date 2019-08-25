@@ -2,11 +2,14 @@ package com.weecoding.common.util;
 
 import com.weecoding.common.constant.BaseConstants;
 import com.weecoding.common.enumerate.SecurityCodeEnum;
+import com.weecoding.common.wrapper.DataWrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 字符串常用操作：继承{@link StringUtils}
@@ -17,8 +20,6 @@ import java.util.*;
  */
 @Slf4j
 public class S extends StringUtils {
-
-
     /***
      * 将list<string></>拼接成string，默认分隔符 ','
      * @param stringList
@@ -79,34 +80,64 @@ public class S extends StringUtils {
      * 生成指定位数的数字/验证码
      *
      * @param length 生成数据的长度
-     * @param customCodeType {@link SecurityCodeEnum} 不指定时默认为：{@link SecurityCodeEnum#NUMBER}
+     * @param customCodeType {@link SecurityCodeEnum}
      * @return
      */
     public static String newRandom(int length, SecurityCodeEnum customCodeType) {
         String originData;
-        if (Objects.isNull(customCodeType) || SecurityCodeEnum.NUMBER.equals(customCodeType)) {
-            originData = join(BaseConstants.NUMBER_ARR);
-        } else if (Objects.equals(SecurityCodeEnum.LOWER_LETTER, customCodeType)) {
-            originData = join(BaseConstants.LOWER_LETTER_ARR);
-        } else if (Objects.equals(SecurityCodeEnum.UPPER_LETTER, customCodeType)) {
-            originData = join(BaseConstants.UPPER_LETTER_ARR);
-        } else if (Objects.equals(SecurityCodeEnum.MIX_LETTER, customCodeType)) {
-            List<Character> characterList = new ArrayList(Arrays.asList(BaseConstants.UPPER_LETTER_ARR));
-            characterList.addAll(Arrays.asList(BaseConstants.LOWER_LETTER_ARR));
-            originData = join(characterList.toArray());
-        } else if (Objects.equals(SecurityCodeEnum.MIX_LOWER_LETTER_AND_NUMBER, customCodeType)) {
-            List<Character> characterList = new ArrayList(Arrays.asList(BaseConstants.LOWER_LETTER_ARR));
-            characterList.addAll(Arrays.asList(BaseConstants.NUMBER_ARR));
-            originData = join(characterList.toArray());
-        } else if (Objects.equals(SecurityCodeEnum.MIX_UPPER_LETTER_AND_NUMBER, customCodeType)) {
-            List<Character> characterList = new ArrayList(Arrays.asList(BaseConstants.UPPER_LETTER_ARR));
-            characterList.addAll(Arrays.asList(BaseConstants.NUMBER_ARR));
-            originData = join(characterList.toArray());
-        } else {
-            List<Character> characterList = new ArrayList(Arrays.asList(BaseConstants.UPPER_LETTER_ARR));
-            characterList.addAll(Arrays.asList(BaseConstants.LOWER_LETTER_ARR));
-            characterList.addAll(Arrays.asList(BaseConstants.NUMBER_ARR));
-            originData = join(characterList.toArray());
+        switch (customCodeType) {
+            //大写字母
+            case UPPER_LETTER:
+                originData = join(BaseConstants.LOWER_LETTER_ARR);
+                break;
+            //小写字母
+            case LOWER_LETTER:
+                originData = join(BaseConstants.LOWER_LETTER_ARR);
+                break;
+            //大小写混合
+            case MIX_LETTER:
+                originData = join(
+                        DataWrappers.createArrayList(Arrays.asList(BaseConstants.UPPER_LETTER_ARR))
+                                .addAll(Arrays.asList(BaseConstants.LOWER_LETTER_ARR))
+                                .build()
+                                .toArray()
+                );
+                break;
+            //小写和数字
+            case MIX_LOWER_LETTER_AND_NUMBER:
+                originData = join(
+                        DataWrappers.createArrayList()
+                                .addAll(Arrays.asList(BaseConstants.LOWER_LETTER_ARR))
+                                .addAll(Arrays.asList(BaseConstants.NUMBER_ARR))
+                                .build()
+                                .toArray()
+                );
+                break;
+            //大写和数字
+            case MIX_UPPER_LETTER_AND_NUMBER:
+                originData = join(
+                        DataWrappers.createArrayList()
+                                .addAll(Arrays.asList(BaseConstants.UPPER_LETTER_ARR))
+                                .addAll(Arrays.asList(BaseConstants.NUMBER_ARR))
+                                .build()
+                                .toArray()
+                );
+                break;
+            //大小写和字母混合
+            case MIX_ALL_LETTER_AND_NUMBER:
+                originData = join(
+                        DataWrappers.createArrayList()
+                                .addAll(Arrays.asList(BaseConstants.UPPER_LETTER_ARR))
+                                .addAll(Arrays.asList(BaseConstants.LOWER_LETTER_ARR))
+                                .addAll(Arrays.asList(BaseConstants.NUMBER_ARR))
+                                .build()
+                                .toArray()
+                );
+                break;
+            //默认是数字
+            default:
+                originData = join(BaseConstants.NUMBER_ARR);
+                break;
         }
         Random random = new Random();
         StringBuilder result = new StringBuilder();
@@ -147,9 +178,12 @@ public class S extends StringUtils {
      * @param args
      */
     public static void main(String[] args) {
-        String join = S.duplicateJoin(new String[]{"1", "", null, "2", "", "", "d", "f", "", ""}, "，");
-        System.out.println(join);
-        String join2 = S.duplicateJoin(new String[]{"1", "", null, "2", "", "", "d", "f", "", ""}, "/", false);
-        System.out.println(join2);
+//        String join = S.duplicateJoin(new String[]{"1", "", null, "2", "", "", "d", "f", "", ""}, "，");
+//        System.out.println(join);
+//        String join2 = S.duplicateJoin(new String[]{"1", "", null, "2", "", "", "d", "f", "", ""}, "/", false);
+//        System.out.println(join2);
+
+        String s = newRandom(32, SecurityCodeEnum.MIX_ALL_LETTER_AND_NUMBER);
+        System.out.println(s);
     }
 }

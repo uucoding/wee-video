@@ -26,7 +26,7 @@ public class Video extends BaseEntity {
     /**
      * 视频存放的路径
      */
-    private String videoPath;
+    private String path;
 
     /**
      * 视频描述
@@ -36,17 +36,17 @@ public class Video extends BaseEntity {
     /**
      * 视频秒数
      */
-    private Double videoSeconds;
+    private Double duration;
 
     /**
      * 视频宽度
      */
-    private Integer videoWidth;
+    private Integer width;
 
     /**
      * 视频高度
      */
-    private Integer videoHeight;
+    private Integer height;
 
     /**
      * 视频封面图
@@ -56,11 +56,11 @@ public class Video extends BaseEntity {
     /**
      * 喜欢/点赞的数量
      */
-    private Integer likeCount;
+    private Long likeCount = 0L;
 
     /**
      * 视频状态：发布成功1，禁止播放0
      */
-    private Integer status;
+    private Integer status = 1;
 
 }

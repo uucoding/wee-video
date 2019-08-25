@@ -17,14 +17,17 @@ public interface IBaseService<T extends Entity> extends IService<T> {
      * 更新实体
      * @param entity
      * @return  T
+     * @throws Exception
      */
     boolean updateEntity(T entity) throws Exception;
 
     /**
      * 上传单个文件处理
      * @param wrapper
-     * @param entity  文件关联的类
-     * @param <F>
+     * @param key 上传标记的key，用于做文件上层的目录，一般为用户的id
+     * @param <F>  可以上传多种途径
+     * @return  返回数据库的文件的路径
+     * @throws Exception
      */
-    <F extends MultipartFile> void uploadSingleFileWithEntity(MultipartFileWrapper<F> wrapper, T entity) throws Exception;
+    <F extends MultipartFile> String uploadSingleFile(MultipartFileWrapper<F> wrapper, String key) throws Exception;
 }

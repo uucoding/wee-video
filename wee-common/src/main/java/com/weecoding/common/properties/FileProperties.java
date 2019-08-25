@@ -25,6 +25,13 @@ public class FileProperties {
     private String fileMainDirectory = "upload";
 
     /**
+     * ffmpeg的命令工具
+     * 默认使用ffmpeg （MAC OS 环境）
+     * 如果未配置全局变量，那么自行设置路径
+     */
+    private String ffmpegPath = "ffmpeg";
+
+    /**
      * 获取文件存储的后的绝对路径前缀
      * {@link FileProperties#rootPath}/{@link FileProperties#fileMainDirectory}
      * @return

@@ -1,10 +1,12 @@
 package com.weecoding.service.service;
 
 import com.weecoding.common.exception.GlobalException;
+import com.weecoding.common.form.MultipartFileWrapper;
 import com.weecoding.common.service.IBaseService;
 import com.weecoding.service.enumerate.UserResultEnum;
 import com.weecoding.service.form.UserForm;
 import com.weecoding.service.model.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -64,4 +66,12 @@ public interface UserService extends IBaseService<User> {
      * @throws Exception
      */
     User changePassword(UserForm userForm) throws Exception;
+
+    /**
+     * 上传头像，并将头像保存到数据库的用户中
+     * @param userForm
+     * @param fileWrapper
+     * @return
+     */
+    String updateEntityAndUploadFaceImage(UserForm userForm, MultipartFileWrapper<MultipartFile> fileWrapper) throws Exception;
 }

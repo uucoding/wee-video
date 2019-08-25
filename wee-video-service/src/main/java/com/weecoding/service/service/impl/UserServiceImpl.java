@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.weecoding.common.constant.RedisConstants;
 import com.weecoding.common.enumerate.SecurityCodeEnum;
 import com.weecoding.common.exception.GlobalException;
+import com.weecoding.common.form.MultipartFileWrapper;
 import com.weecoding.common.service.BaseServiceImpl;
 import com.weecoding.common.util.JSON;
 import com.weecoding.common.util.S;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -129,7 +131,12 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     }
 
     @Override
-    protected void setFilePath(String uploadPath, User entity) {
-        entity.setFaceImage(uploadPath);
+    @Transactional(rollbackFor = Exception.class)
+    public String updateEntityAndUploadFaceImage(UserForm userForm, MultipartFileWrapper<MultipartFile> fileWrapper) throws Exception{
+        String path = uploadSingleFile(fileWrapper, userForm.getId());
+        User user = BeanUtils.copyBean(userForm, User.class);
+        user.setFaceImage(path);
+        this.getBaseMapper().updateById(user);
+        return path;
     }
 }

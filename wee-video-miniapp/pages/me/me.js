@@ -28,15 +28,15 @@ Page({
   onLoad: function() {
     if (!wx.getStorageSync('token')) {
       //跳转至登陆页
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/login/login'
       })
     }
     let _this = this;
-    console.log(app.userInfo)
+    let user = wx.getStorageSync('user');
     _this.setData({
-      user: app.userInfo,
-      faceImage: `${app.domain}/${app.userInfo.faceImage}`
+      user: user,
+      faceImage: `${app.domain}${user.faceImage}`
     })
   },
   /**
@@ -52,6 +52,7 @@ Page({
    */
   editFace: function() {
     let _this = this;
+    let user = wx.getStorageSync('user');
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'],
@@ -67,23 +68,47 @@ Page({
           },
           name: 'file',
           formData: {
-            id: app.userInfo.id
+            id: this.data.user.id
           },
           success(res) {
             const data = res.data
             let response = JSON.parse(data);
-            console.log(response)
             if (response.code === 0) {
-              //更新app中的用户信息
-              app.userInfo['faceImage'] = response.data.faceImage;
+              //更新缓存中的用户信息
+              user.faceImage = response.data;
+              wx.setStorageSync('user');
               //设置当前用户信息
               _this.setData({
-                faceImage: `${app.domain}/${response.data.faceImage}`
+                faceImage: `${app.domain}${response.data}`
               })
             } else {
               toastTip(response.msg)
             }
           }
+        })
+      }
+    })
+  },
+  /**
+   * 上传视频
+   */
+  uploadVideo: function() {
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success(res) {
+        if (res.duration > 60) {
+          toastTip("视频不能超过60秒！");
+          return false;
+        }
+        if (res.duration <= 1) {
+          toastTip("视频不能小于1秒！")
+          return false
+        }
+        //跳转至上传视频页面
+        wx.navigateTo({
+          url: `/pages/uploadVideo/uploadVideo?duration=${res.duration}&width=${res.width}&height=${res.height}&size=${res.size}&path=${res.tempFilePath}`
         })
       }
     })

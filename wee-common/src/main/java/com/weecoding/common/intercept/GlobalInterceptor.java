@@ -52,7 +52,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
         if (!globalProperties.isEnableTokenFilter()) {
             return true;
         }
-        log.debug("【拦截】<== url: {}，", request.getRequestURI());
+        log.debug("【请求】<== url: {}，", request.getRequestURI());
         //1、校验是否认证
         String token = request.getHeader(RedisConstants.TOKEN);
         if (V.isEmpty(token)

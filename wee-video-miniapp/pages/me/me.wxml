@@ -26,7 +26,7 @@
     </view>
     <!-- 添加视频 -->
     <view class='upload-container'>
-      <view class='upload-btn'>
+      <view class='upload-btn' bindtap="uploadVideo">
         <image class='icon' src='/resource/images/camera.png'></image>
         <text>添加视频</text>
       </view>
